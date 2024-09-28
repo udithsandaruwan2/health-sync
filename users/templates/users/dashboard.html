@@ -8,5 +8,15 @@
 <body>
     <h1>Welcome to your Dashboard</h1>
     <a href="{% url 'logout' %}">Logout</a>
+    <hr>
+    <h2>Doctors</h2>
+    <div class="doctors-list">
+        {% for doctor in doctors %}
+        <div class="doctor-card">
+            <h3>{{ doctor.name }}</h3>
+            <p>Specialization: {{ doctor.specialization }}</p>
+        </div>
+        {% endfor %}
+    </div>
 </body>
 </html>

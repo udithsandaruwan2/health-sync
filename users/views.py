@@ -9,6 +9,8 @@ import requests
 import os
 from dotenv import load_dotenv
 
+from .models import Profile
+
 load_dotenv()
 
 def login_view(request):
@@ -75,4 +77,9 @@ def index(request):
 
 @login_required(login_url="login")
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    page = 'dashboard'
+    
+    doctors = Profile.objects.all().filter(user_type=2)
+    
+    context = {'page': page, 'doctors': doctors}
+    return render(request, 'users/dashboard.html', context)

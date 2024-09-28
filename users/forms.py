@@ -3,14 +3,12 @@ from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from .models import Profile
-from captcha.fields import CaptchaField
-# from captcha.widgets import ReCaptchaV2Checkbox
 
 class CustomUserCreationForm(UserCreationForm):
-    captcha = CaptchaField()
+
     class Meta:
         model = User
-        fields = ['first_name', 'email', 'username', 'password1', 'password2', 'captcha']
+        fields = ['first_name', 'email', 'username', 'password1', 'password2']
         labels = {
             'first_name':'Name', 
         }   

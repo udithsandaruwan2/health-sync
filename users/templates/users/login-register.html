@@ -10,19 +10,26 @@
 </head>
 <body>
     {% if page == "login" %}
-        <h2>Login</h2>
-        <form method="POST">
-            {% csrf_token %}
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required><br>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            <!-- reCAPTCHA widget -->
-            <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
-            <button type="submit">Login</button>
-        </form>
-        <a href="{% url 'register' %}">Register</a>
-        <a href="{% url 'index' %}">home</a>
+    <h2>Login</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        
+        
+        <!-- reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
+        
+        <button type="submit">Login</button>
+    </form>
+    
+    <a href="{% url 'register' %}">Register</a>
+    <a href="{% url 'index' %}">home</a>
+    
     {% elif page == "register" %}
     <form method="POST">
         {% csrf_token %}
