@@ -8,7 +8,7 @@ from django.conf import settings
 import requests
 import os
 from dotenv import load_dotenv
-
+from .forms import ProfileForm
 from .models import Profile
 
 load_dotenv()
@@ -78,8 +78,37 @@ def index(request):
 @login_required(login_url="login")
 def dashboard(request):
     page = 'dashboard'
+    profile = request.user.profile
     
     doctors = Profile.objects.all().filter(user_type=2)
     
-    context = {'page': page, 'doctors': doctors}
+    context = {'page': page, 'profile':profile, 'doctors': doctors}
     return render(request, 'users/dashboard.html', context)
+
+@login_required(login_url="login")
+def singleAppointment(request, pk):
+    profile = request.user.profile
+
+    doctor = Profile.objects.get(id=pk)
+    
+    context = {'profile': profile, 'doctor': doctor}
+    return render(request, 'users/single-appointment.html', context)
+
+def singleProfile(request, pk):
+    profile = Profile.objects.get(id=pk)
+    
+    context = {'profile': profile}
+    return render(request, 'users/single-profile.html', context)
+
+def updateProfile(request):
+    profile = request.user.profile
+    form = ProfileForm(instance=profile)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile', pk=profile.id)
+
+    context = {'form': form}
+    return render(request, 'users/update-profile.html', context)

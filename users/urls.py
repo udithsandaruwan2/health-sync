@@ -8,5 +8,8 @@ urlpatterns = [
     
     path('', views.index, name='index'),    
     path('dashboard/', views.dashboard, name='dashboard'),
+    path('doctor/appointment/<str:pk>/', views.singleAppointment, name='appointment'),
+    path('profile/<str:pk>/', views.singleProfile, name='profile'),
+    path('update-profile/', views.updateProfile, name='update-profile'),
     
 ]
