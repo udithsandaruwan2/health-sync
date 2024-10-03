@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, AppointmentForm
 from django.conf import settings
 import requests
 import os
@@ -88,10 +88,20 @@ def dashboard(request):
 @login_required(login_url="login")
 def singleAppointment(request, pk):
     profile = request.user.profile
-
     doctor = Profile.objects.get(id=pk)
+    form = AppointmentForm()
     
-    context = {'profile': profile, 'doctor': doctor}
+    if request.method == 'POST':
+        form = AppointmentForm(request.POST)
+        if form.is_valid():
+            appointment = form.save(commit=False)
+            appointment.patient = profile
+            appointment.doctor = doctor
+            appointment.save()
+            messages.success('Appointment was created!')
+            return redirect('dashboard')
+    
+    context = {'profile': profile, 'doctor': doctor, 'form':form}
     return render(request, 'users/single-appointment.html', context)
 
 def singleProfile(request, pk):

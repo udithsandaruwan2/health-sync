@@ -26,9 +26,9 @@ class Profile(models.Model):
 
 class Appointment(models.Model):
     STATUS = (
-        ('Pending', 'Pending'),
-        ('Approved', 'Approved'),
-        ('Cancelled', 'Cancelled'),
+        (1, 'Pending'),
+        (2, 'Approved'),
+        (3, 'Cancelled'),
     )
     
     patient = models.ForeignKey(
@@ -43,9 +43,13 @@ class Appointment(models.Model):
         limit_choices_to={'user_type': 2},  # Only doctors
         related_name='doctor_appointments'  # Specify unique related_name
     )
-    status = models.CharField(max_length=10, choices=STATUS, default='Pending')
+    status = models.IntegerField(choices=STATUS, default=1)
+    description = models.TextField(null=True, blank=True)
+    appointment_date = models.DateField()
+    appointment_time = models.TimeField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"{self.doctor} : {self.patient}"
+        return str(f"{self.doctor} : {self.patient}")
+
