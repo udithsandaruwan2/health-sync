@@ -9,7 +9,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from .forms import ProfileForm
-from .models import Profile
+from .models import Profile, Appointment
 
 load_dotenv()
 
@@ -106,7 +106,11 @@ def singleAppointment(request, pk):
 
 @login_required(login_url="login")
 def userAppointments(request):
-    return render(request, '')
+    profile = request.user.profile
+    appointments = Appointment.objects.all().filter(patient=profile)
+    
+    context = {'profile': profile, 'appointments': appointments}
+    return render(request, 'users/my-appointments.html', context)
 
 def singleProfile(request, pk):
     profile = Profile.objects.get(id=pk)
