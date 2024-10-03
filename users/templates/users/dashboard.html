@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    {% if messages %}
+
+      {% for message in messages %}
+
+      <ul classes="messages">
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+      </ul>
+
+      {% endfor %}
+
+    {% endif %}
+    <h1>Welcome to your Dashboard</h1>
+    <a href="{% url 'profile' profile.id %}">My Profile</a>
+    <a href="{% url 'user-appointments' %}">My appointments</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    <hr>
+    <h2>Doctors</h2>
+    <div class="doctors-list">
+        {% for doctor in doctors %}
+        <div class="doctor-card">
+            <h3>{{ doctor.name }}</h3>
+            <p>Specialization: {{ doctor.specialization }}</p>
+            <a href="{% url 'appointment' doctor.id %}">appoint</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

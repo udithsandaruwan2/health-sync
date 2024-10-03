@@ -1,0 +1,14 @@
+hi this is home page
+{% if messages %}
+
+      {% for message in messages %}
+
+      <ul classes="messages">
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+      </ul>
+
+      {% endfor %}
+
+    {% endif %}
+<a href="{% url 'login' %}">login</a>
+<a href="{% url 'register' %}">register</a>
