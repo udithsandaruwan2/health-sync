@@ -110,7 +110,7 @@ def userAppointments(request):
     appointments = Appointment.objects.all().filter(patient=profile)
     
     context = {'profile': profile, 'appointments': appointments}
-    return render(request, 'users/my-appointments.html', context)
+    return render(request, 'users/user-appointments.html', context)
 
 def singleProfile(request, pk):
     profile = Profile.objects.get(id=pk)
@@ -130,3 +130,11 @@ def updateProfile(request):
 
     context = {'form': form}
     return render(request, 'users/update-profile.html', context)
+
+def deleteAppointment(request, pk):
+    appointment = Appointment.objects.get(id=pk)
+    if request.method == 'POST':
+        appointment.delete()
+        return redirect('user-appointments')
+    context = {'appointment': appointment}
+    return render(request, 'users/delete-appointment.html', context)
