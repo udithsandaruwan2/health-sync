@@ -22,6 +22,8 @@
     <a href="{% url 'user-appointments' %}">My appointments</a>
     <a href="{% url 'logout' %}">Logout</a>
     <hr>
+      <h1> {{points}} </h1>
+    <hr>
     <h2>Doctors</h2>
     <div class="doctors-list">
         {% for doctor in doctors %}

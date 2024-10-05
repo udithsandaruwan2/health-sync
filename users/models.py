@@ -53,3 +53,11 @@ class Appointment(models.Model):
     def __str__(self):
         return str(f"{self.doctor} : {self.patient}")
 
+
+class LoyaltyPoint(models.Model):
+    user = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='loyalty_points')
+    points = models.IntegerField(default=0)
+    last_updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.points} points"

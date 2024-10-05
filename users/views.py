@@ -9,7 +9,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from .forms import ProfileForm
-from .models import Profile, Appointment
+from .models import Profile, Appointment, LoyaltyPoint
 
 load_dotenv()
 
@@ -81,8 +81,9 @@ def dashboard(request):
     profile = request.user.profile
     
     doctors = Profile.objects.all().filter(user_type=2)
+    points, created = LoyaltyPoint.objects.get_or_create(user=profile)
     
-    context = {'page': page, 'profile':profile, 'doctors': doctors}
+    context = {'page': page, 'profile':profile, 'doctors': doctors, 'points': points}
     return render(request, 'users/dashboard.html', context)
 
 @login_required(login_url="login")
