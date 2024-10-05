@@ -45,6 +45,8 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
+        <!-- reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
         <button type="submit">submit</button>
     </form>
     <a href="{% url 'login' %}">Login</a>

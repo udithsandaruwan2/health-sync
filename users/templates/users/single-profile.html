@@ -19,7 +19,17 @@
     {% endif %}
     <div class="profile-container">
         <h1>User Profile</h1>
-        <a href="{% url 'dashboard' %}">back</a>
+
+        {% if profile.user_type == 1 %}
+
+            <a href="{% url 'dashboard' %}">back</a>
+
+        {% elif profile.user_type == 2 %}
+
+            <a href="{% url 'doctor-dashboard' %}">back</a>
+
+        {% endif %}
+
         <a href="{% url 'update-profile' %}">edit</a>
         <div class="profile-image">
             <img src="{{ profile.profile_image.url }}" alt="Profile Image" style="height: 100px; width: auto;">

@@ -2,7 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
-from .models import Profile, Appointment
+from .models import Profile, Appointment, LoyaltyPoint
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -52,3 +52,5 @@ class AppointmentForm(ModelForm):
             'appointment_date': forms.DateInput(attrs={'type': 'date'}),
             'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
         }
+        
+

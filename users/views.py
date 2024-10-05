@@ -36,7 +36,11 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'User login successfully!')
-                return redirect('dashboard')
+                if user.profile.user_type == 1:
+                    return redirect('dashboard')
+                
+                if user.profile.user_type == 2:
+                    return redirect('doctor-dashboard')
             else:
                 messages.error(request, 'Username or password is incorrect!')
         else:
@@ -45,25 +49,38 @@ def login_view(request):
     context = {'page': page, 'site_key': site_key}
     return render(request, 'users/login-register.html', context)
 
-
 def register_view(request):
     page = 'register'
     form = CustomUserCreationForm()
+    site_key = os.getenv('RECAPTCHA_PUBLIC_KEY')
 
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.username = user.username.lower()
-            user.save()
-            messages.success(request, 'User account was created!')
+        recaptcha_response = request.POST.get('g-recaptcha-response')
+        
+        # Verify reCAPTCHA
+        data = {
+            'secret': settings.RECAPTCHA_PRIVATE_KEY,
+            'response': recaptcha_response
+        }
+        r = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = r.json()
 
-            login(request, user)
-            return redirect('dashboard')
+        if result.get('success'):
+            if form.is_valid():
+                user = form.save(commit=False)
+                user.username = user.username.lower()
+                user.save()
+                messages.success(request, 'User account was created!')
+
+                login(request, user)
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'An error occurred during registration!')
         else:
-            messages.error(request, 'An error occurred during registration!')
+            messages.error(request, 'Invalid reCAPTCHA. Please try again.')
 
-    context = {'page': page, 'form': form}
+    context = {'page': page, 'form': form, 'site_key': site_key}
     return render(request, 'users/login-register.html', context)
 
 @login_required(login_url="login")
@@ -76,15 +93,15 @@ def index(request):
     return render(request, 'users/index.html')
 
 @login_required(login_url="login")
-def dashboard(request):
-    page = 'dashboard'
+def userDashboard(request):
+    page = 'user-dashboard'
     profile = request.user.profile
     
     doctors = Profile.objects.all().filter(user_type=2)
     points, created = LoyaltyPoint.objects.get_or_create(user=profile)
     
     context = {'page': page, 'profile':profile, 'doctors': doctors, 'points': points}
-    return render(request, 'users/dashboard.html', context)
+    return render(request, 'users/user-dashboard.html', context)
 
 @login_required(login_url="login")
 def singleAppointment(request, pk):
@@ -100,6 +117,7 @@ def singleAppointment(request, pk):
             appointment.doctor = doctor
             appointment.save()
             messages.success(request, 'Appointment was created!')
+
             return redirect('appointment', pk=pk)
     
     context = {'profile': profile, 'doctor': doctor, 'form':form}
@@ -139,3 +157,15 @@ def deleteAppointment(request, pk):
         return redirect('user-appointments')
     context = {'appointment': appointment}
     return render(request, 'users/delete-appointment.html', context)
+
+def doctorDashboard(request):
+    page = 'doctor-dashboard'
+    profile = request.user.profile
+    
+    context = {'page': page, 'profile':profile}
+    return render(request, 'users/doctor-dashboard.html', context)
+
+def requestedAppointment(request):
+    page = 'request-appointment'
+    context = {'page': page}
+    return render(request, 'users/requested-appointments.html', context)

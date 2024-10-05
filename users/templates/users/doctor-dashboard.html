@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>{{page}}</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'profile' profile.id %}">Profile</a></li>
+                <li><a href="{% url 'requested-appointment' %}">Appointments</a></li>
+                <li><a href="#settings">Settings</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="profile">
+            <h2>Profile</h2>
+            <p>Welcome, {{profile.user.name}}</p>
+        </section>
+        <section id="appointments">
+            <h2>Appointments</h2>
+            <p>List of upcoming appointments.</p>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; 2023 Health Sync</p>
+    </footer>
+</body>
+</html>

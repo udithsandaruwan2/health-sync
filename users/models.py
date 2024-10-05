@@ -29,6 +29,7 @@ class Appointment(models.Model):
         (1, 'Pending'),
         (2, 'Approved'),
         (3, 'Cancelled'),
+        (4, 'Reviewed'),
     )
     
     patient = models.ForeignKey(

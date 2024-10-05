@@ -1,6 +1,7 @@
-from .models import Profile
+from .models import Profile, LoyaltyPoint, Appointment
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
+
 
 def createProfile(sender, instance, created, **kwargs):
     if created:
@@ -22,9 +23,19 @@ def updateUser(sender, instance, created, **kwargs):
         user.save()
 
 def deleteUser(sender, instance, **kwargs):
-    user = instance.user
+    user = instance
     user.delete()
+
+def updateLoyaltyPoints(sender, instance, created, **kwargs):
+    profile = instance.patient
+    points, _ = LoyaltyPoint.objects.get_or_create(user=profile)
+    if created:
+        points.points += 10
+    else:
+        points.points += 1
+    points.save()
 
 post_save.connect(createProfile, sender=User)
 post_save.connect(updateUser, sender=Profile)
 post_delete.connect(deleteUser, sender=Profile)
+post_save.connect(updateLoyaltyPoints, sender=Appointment)

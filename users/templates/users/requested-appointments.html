@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requested Appointments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    {% if messages %}
+
+      {% for message in messages %}
+
+      <ul classes="messages">
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+      </ul>
+
+      {% endfor %}
+
+    {% endif %}
+    <a href="{% url 'dashboard' %}">back</a>
+    <h1>My Appointments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Action</th>     <th>Time</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th>Action</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.date }}</td>
+                <td>{{ appointment.time }}</td>
+                <td>{{ appointment.status }}</td>
+                <td><a href="{% url 'delete-appointment' appointment.id %}">cancel request</a></td>
+                <td><a href="">approve</a></td>
+                <td><a href="">view profile</a></td>
+            </tr>
+            {% endfor %} -->
+        </tbody>
+    </table>
+</body>
+</html>
