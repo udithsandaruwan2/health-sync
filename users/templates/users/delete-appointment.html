@@ -9,7 +9,13 @@
     <h2>Are you sure you want to delete this appointment?</h2>
     <form method="POST">
         {% csrf_token %}
-        <a href="{% url 'user-appointments' %}">Go Back</a>
+        {% if page == 'user-appointments' %}
+            <a href="{% url 'user-appointments' %}">Go Back</a>
+        {% elif page == 'requested-appointment' %}
+            <a href="{% url 'requested-appointment' %}">Go Back</a>
+        {% else %}
+            <a href="">Go Back</a>
+        {% endif %}
         <button type="submit">Confirm</button>
     </form>
 </body>

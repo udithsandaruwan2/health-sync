@@ -10,6 +10,7 @@ import os
 from dotenv import load_dotenv
 from .forms import ProfileForm
 from .models import Profile, Appointment, LoyaltyPoint
+from .utils import encrypt_message, decrypt_message
 
 load_dotenv()
 
@@ -95,7 +96,10 @@ def index(request):
 @login_required(login_url="login")
 def userDashboard(request):
     page = 'user-dashboard'
-    profile = request.user.profile
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
     
     doctors = Profile.objects.all().filter(user_type=2)
     points, created = LoyaltyPoint.objects.get_or_create(user=profile)
@@ -105,7 +109,10 @@ def userDashboard(request):
 
 @login_required(login_url="login")
 def singleAppointment(request, pk):
-    profile = request.user.profile
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
     doctor = Profile.objects.get(id=pk)
     form = AppointmentForm()
     
@@ -125,10 +132,15 @@ def singleAppointment(request, pk):
 
 @login_required(login_url="login")
 def userAppointments(request):
-    profile = request.user.profile
+    page = 'user-appointments'
+    page_encrypted = encrypt_message(page)
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
     appointments = Appointment.objects.all().filter(patient=profile)
     
-    context = {'profile': profile, 'appointments': appointments}
+    context = {'page':page, 'profile': profile, 'appointments': appointments, 'page_encrypted': page_encrypted}
     return render(request, 'users/user-appointments.html', context)
 
 def singleProfile(request, pk):
@@ -138,7 +150,10 @@ def singleProfile(request, pk):
     return render(request, 'users/single-profile.html', context)
 
 def updateProfile(request):
-    profile = request.user.profile
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
     form = ProfileForm(instance=profile)
 
     if request.method == 'POST':
@@ -152,20 +167,32 @@ def updateProfile(request):
 
 def deleteAppointment(request, pk):
     appointment = Appointment.objects.get(id=pk)
+    page_from = request.GET.get('page')
+    page = decrypt_message(page_from)
     if request.method == 'POST':
         appointment.delete()
         return redirect('user-appointments')
-    context = {'appointment': appointment}
+    context = {'appointment': appointment, 'page': page}
     return render(request, 'users/delete-appointment.html', context)
 
+@login_required(login_url='login')
 def doctorDashboard(request):
     page = 'doctor-dashboard'
-    profile = request.user.profile
-    
-    context = {'page': page, 'profile':profile}
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
+
+    context = {'page': page, 'profile': profile}
     return render(request, 'users/doctor-dashboard.html', context)
 
 def requestedAppointment(request):
     page = 'request-appointment'
-    context = {'page': page}
+    page_encrypted = encrypt_message(page)
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
+    appointments = Appointment.objects.all().filter(doctor=profile)
+    context = {'page': page, 'appointments':appointments, 'page_encrypted': page_encrypted}
     return render(request, 'users/requested-appointments.html', context)

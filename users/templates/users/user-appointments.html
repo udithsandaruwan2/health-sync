@@ -39,7 +39,7 @@
                 <td>{{ appointment.date }}</td>
                 <td>{{ appointment.time }}</td>
                 <td>{{ appointment.status }}</td>
-                <td><a href="{% url 'delete-appointment' appointment.id %}">cancel request</a></td>
+                <td><a href="{% url 'delete-appointment' appointment.id %}?page={{page_encrypted}}">cancel request</a></td>
             </tr>
             {% endfor %}
         </tbody>
