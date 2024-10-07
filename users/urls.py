@@ -15,8 +15,10 @@ urlpatterns = [
     path('delete-appointment/<str:pk>/', views.deleteAppointment, name='delete-appointment'),
     
     path('requested-appointment/', views.requestedAppointment, name='requested-appointment'),
+    path('approve-appointment/<str:pk>/', views.approveAppointment, name='approve-appointment'),
     
     path('profile/<str:pk>/', views.singleProfile, name='profile'),
+    path('profile-view/<str:pk>/', views.singleProfileView, name='view-profile'),
     path('update-profile/', views.updateProfile, name='update-profile'),
     
 ]

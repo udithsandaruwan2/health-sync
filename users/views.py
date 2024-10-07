@@ -11,6 +11,8 @@ from dotenv import load_dotenv
 from .forms import ProfileForm
 from .models import Profile, Appointment, LoyaltyPoint
 from .utils import encrypt_message, decrypt_message
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 
 load_dotenv()
 
@@ -143,12 +145,14 @@ def userAppointments(request):
     context = {'page':page, 'profile': profile, 'appointments': appointments, 'page_encrypted': page_encrypted}
     return render(request, 'users/user-appointments.html', context)
 
+@login_required(login_url="login")
 def singleProfile(request, pk):
     profile = Profile.objects.get(id=pk)
     
     context = {'profile': profile}
     return render(request, 'users/single-profile.html', context)
 
+@login_required(login_url='login')
 def updateProfile(request):
     try:
         profile = request.user.profile
@@ -165,27 +169,39 @@ def updateProfile(request):
     context = {'form': form}
     return render(request, 'users/update-profile.html', context)
 
+@login_required(login_url='login')
 def deleteAppointment(request, pk):
-    appointment = Appointment.objects.get(id=pk)
+    appointment = get_object_or_404(Appointment, id=pk)
     page_from = request.GET.get('page')
     page = decrypt_message(page_from)
+    
     if request.method == 'POST':
-        appointment.delete()
-        return redirect('user-appointments')
+        # Change status to 3 (assuming it means deleted/cancelled)
+        appointment.status = 3
+        appointment.save()  # Make sure to save the status change
+        # Redirect based on the page context
+        if page == 'user-appointments':
+            return redirect('user-appointments')
+        else:
+            return redirect('requested-appointment')
+    
     context = {'appointment': appointment, 'page': page}
     return render(request, 'users/delete-appointment.html', context)
 
 @login_required(login_url='login')
 def doctorDashboard(request):
     page = 'doctor-dashboard'
+    profile = request.user.profile
+    appointments = Appointment.objects.all().filter(doctor=profile, status=2)
     try:
         profile = request.user.profile
     except AttributeError:
         return redirect('login')
 
-    context = {'page': page, 'profile': profile}
+    context = {'page': page, 'profile': profile, 'appointments': appointments}
     return render(request, 'users/doctor-dashboard.html', context)
 
+@login_required(login_url='login')
 def requestedAppointment(request):
     page = 'request-appointment'
     page_encrypted = encrypt_message(page)
@@ -193,6 +209,26 @@ def requestedAppointment(request):
         profile = request.user.profile
     except AttributeError:
         return redirect('login')
-    appointments = Appointment.objects.all().filter(doctor=profile)
+    appointments = Appointment.objects.all().filter(doctor=profile, status=1)
     context = {'page': page, 'appointments':appointments, 'page_encrypted': page_encrypted}
     return render(request, 'users/requested-appointments.html', context)
+
+@login_required(login_url='login')
+def approveAppointment(request, pk):
+    appointment = get_object_or_404(Appointment, id=pk)
+    page = 'approve-appointment'
+    
+    if request.method == 'POST':
+        appointment.status = 2
+        appointment.save()
+        messages.success(request, 'Appointment was approved!')
+        return redirect('requested-appointment')
+    
+    context = {'page': page, 'appointment': appointment}
+    return render(request, 'users/approve-appointment.html', context)
+
+def singleProfileView(request, pk):
+    profile = Profile.objects.get(id=pk)
+    
+    context = {'profile': profile}
+    return render(request, 'users/single-profile-view.html', context)
