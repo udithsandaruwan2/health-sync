@@ -21,7 +21,7 @@ body::before {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: url("https://www.codingnepalweb.com/demos/create-glassmorphism-login-form-html-css/hero-bg.jpg"), #000;
+  background: url("https://www.codingnepalweb.com/demos/create-glassmorphism-login-form-html-css/hero-bg.jpg"), #ffffff;
   background-position: center;
   background-size: cover;
 }
@@ -31,7 +31,7 @@ body::before {
   border-radius: 8px;
   padding: 30px;
   text-align: center;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
 }
@@ -44,12 +44,12 @@ form {
 h2 {
   font-size: 2rem;
   margin-bottom: 20px;
-  color: #fff;
+  color: #000000;
 }
 
 .input-field {
   position: relative;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #000000;
   margin: 15px 0;
 }
 
@@ -58,7 +58,7 @@ h2 {
   top: 50%;
   left: 0;
   transform: translateY(-50%);
-  color: #fff;
+  color: #000000;
   font-size: 16px;
   pointer-events: none;
   transition: 0.15s ease;
@@ -71,7 +71,7 @@ h2 {
   border: none;
   outline: none;
   font-size: 16px;
-  color: #fff;
+  color: #000000;
 }
 
 .input-field input:focus~label,
@@ -86,11 +86,11 @@ h2 {
   align-items: center;
   justify-content: space-between;
   margin: 25px 0 35px 0;
-  color: #fff;
+  color: #000000;
 }
 
 #remember {
-  accent-color: #fff;
+  accent-color: #000000;
 }
 
 .forget label {
@@ -103,7 +103,7 @@ h2 {
 }
 
 .wrapper a {
-  color: #efefef;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -112,8 +112,8 @@ h2 {
 }
 
 button {
-  background: #fff;
-  color: #000;
+  background: #000000;
+  color: #ffffff;
   font-weight: 600;
   border: none;
   padding: 12px 20px;
@@ -125,7 +125,7 @@ button {
 }
 
 button:hover {
-  color: #fff;
+  color: #000000;
   border-color: #fff;
   background: rgba(255, 255, 255, 0.15);
 }
@@ -133,5 +133,5 @@ button:hover {
 .register {
   text-align: center;
   margin-top: 30px;
-  color: #fff;
+  color: #000000;
 }

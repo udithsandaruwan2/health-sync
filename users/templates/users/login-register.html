@@ -1,60 +1,75 @@
-
+{% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Register</title>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title></title>
+  <link rel="stylesheet" href=" {% static 'ui-kit-auth/style.css' %} ">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 </head>
 <body>
-    {% if messages %}
+  <div class="wrapper" style="width: 400px;">
 
-      {% for message in messages %}
-
-      <ul classes="messages">
-        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-      </ul>
-
-      {% endfor %}
-
-    {% endif %}
     {% if page == "login" %}
-    <h2>Login</h2>
+
     <form method="POST">
+
         {% csrf_token %}
-        
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        
-        
+
+        <h2>Login</h2>
+        <div class="input-field">
+            <input type="text" id="username" name="username" required>
+            <label>Enter your username</label>
+        </div>
+        <div class="input-field">
+            <input type="password" required>
+            <label>Enter your password</label>
+        </div>
+        <div class="forget">
+            <label for="remember">
+            <input type="checkbox" id="remember" checked>
+            <p>Remember me</p>
+            </label>
+            <a href="#">Forgot password?</a>
+        </div>
         <!-- reCAPTCHA widget -->
         <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
-        
-        <button type="submit">Login</button>
+        <button type="submit">Log In</button>
+        <div class="register">
+            <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
     </form>
-    
-    <a href="{% url 'register' %}">Register</a>
-    <a href="{% url 'index' %}">home</a>
-    
-    {% elif page == "register" %}
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <!-- reCAPTCHA widget -->
-        <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
-        <button type="submit">submit</button>
-    </form>
-    <a href="{% url 'login' %}">Login</a>
-    <a href="{% url 'index' %}">home</a>
-        
+
     {% else %}
-        <h2>404</h2>
-        <a href="{% url 'index' %}">home</a>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <h2>Register</h2>
+
+        {% for field in form %}
+        
+        <div class="input-field">
+            {{ field }}
+            <label>{{field.label}}</label>
+        </div>
+
+        {% endfor %}
+        <!-- reCAPTCHA widget -->
+        <div class="g-recaptcha" data-sitekey="{{site_key}}"></div><br>
+        <button type="submit">Register</button>
+        <div class="register">
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+
     {% endif %}
+    
+
+  </div>
 </body>
 </html>

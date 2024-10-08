@@ -93,7 +93,10 @@ def logout_view(request):
     return redirect('login')
 
 def index(request):
-    return render(request, 'users/index.html')
+    page = 'index'
+    doctores = Profile.objects.all().filter(user_type=2)
+    context = {'page': page, 'doctores': doctores}
+    return render(request, 'users/index.html', context)
 
 @login_required(login_url="login")
 def userDashboard(request):

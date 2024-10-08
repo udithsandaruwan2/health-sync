@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="" type="">
+
+    <title> Orthoc </title>
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href=" {% static 'ui-kit-public/css/bootstrap.css' %} " />
+
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!--owl slider stylesheet -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+    <!-- font awesome style -->
+    <link href=" {% static 'ui-kit-public/css/font-awesome.min.css' %} " rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href=" {% static 'ui-kit-public/css/style.css' %} " rel="stylesheet" />
+    <!-- responsive style -->
+    <link href=" {% static 'ui-kit-public/css/responsive.css' %} " rel="stylesheet" />
+
+</head>
+
+<body>
+
+    {% if messages %}
+
+      {% for message in messages %}
+
+      <ul classes="messages">
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+      </ul>
+
+      {% endfor %}
+
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock content %}
+
+    {% include 'footer.html' %}
+
+    <!-- jQery -->
+    <script type="text/javascript" src=" {% static 'ui-kit-public/js/jquery-3.4.1.min.js
+    ' %} "></script>
+    <!-- popper js -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <!-- bootstrap js -->
+    <script type="text/javascript" src=" {% static 'ui-kit-public/js/bootstrap.js' %} "></script>
+    <!-- owl slider -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
+    </script>
+    <!-- custom js -->
+    <script type="text/javascript" src=" {% static 'ui-kit-public/js/custom.js' %} "></script>
+    <!-- Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
+    </script>
+    <!-- End Google Map -->
+
+</body>
+
+</html>
