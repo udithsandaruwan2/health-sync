@@ -4,45 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Requested Appointments</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for the body */
+            font-family: Arial, sans-serif; /* Simple font for the page */
+        }
+        .container {
+            max-width: 800px; /* Max width for the container */
+            margin: 30px auto; /* Center the container */
+            padding: 20px; /* Padding inside the container */
+            background-color: #ffffff; /* White background for the table */
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        h1 {
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+        .messages {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+            margin-bottom: 20px; /* Space below the messages */
+        }
+        .messages li {
+            margin: 10px 0; /* Space between messages */
+            padding: 10px; /* Padding for each message */
+            border-radius: 4px; /* Rounded corners for messages */
+        }
+        table {
+            width: 100%; /* Full width for the table */
+            margin-top: 20px; /* Space above the table */
+            border-collapse: collapse; /* Collapse borders */
+            border-radius: 10px; /* Rounded corners for the table */
+            overflow: hidden; /* Ensure corners are hidden */
+        }
+        th, td {
+            padding: 12px; /* Padding for table cells */
+            text-align: left; /* Align text to the left */
+            border-bottom: 1px solid #dee2e6; /* Light bottom border for table cells */
+        }
+        th {
+            background-color: transparent; /* Transparent background for headers */
+            color: #333; /* Dark color for header text */
+        }
+        tr:hover {
+            background-color: #f1f1f1; /* Light hover effect for table rows */
+        }
+        a {
+            color: #007bff; /* Link color */
+            text-decoration: none; /* Remove underline from links */
+        }
+        a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+        .back-link {
+            margin-bottom: 20px; /* Space below the back link */
+            display: inline-block; /* Make it inline block for spacing */
+        }
+    </style>
 </head>
 <body>
-    {% if messages %}
+    <div class="container">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        
+        <a href="{% url 'doctor-dashboard' %}" class="back-link">Back to Dashboard</a>
+        <h1>Requested Appointments</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th> 
+                    <th>Description</th>
+                    <th>Cancel Request</th>
+                    <th>Approve</th>
+                    <th>View Profile</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.appointment_time }}</td>
+                    <td>{{ appointment.description }}</td>
+                    <td><a href="{% url 'delete-appointment' appointment.id %}?page={{page_encrypted}}">Cancel Request</a></td>
+                    <td><a href="{% url 'approve-appointment' appointment.id %}">Approve</a></td>
+                    <td><a href="{% url 'view-profile' appointment.patient.id %}">View Profile</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-      {% for message in messages %}
-
-      <ul classes="messages">
-        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-      </ul>
-
-      {% endfor %}
-
-    {% endif %}
-    <a href="{% url 'doctor-dashboard' %}">back</a>
-    <h1>Requested Appointments</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th> 
-                <th>Description</th>
-                <th>-</th>
-                <th>-</th>
-                <th>-</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.appointment_date }}</td>
-                <td>{{ appointment.appointment_time }}</td>
-                <td>{{ appointment.description }}</td>
-                <td><a href="{% url 'delete-appointment' appointment.id %}?page={{page_encrypted}}">cancel request</a></td>
-                <td><a href="{% url 'approve-appointment' appointment.id %}">approve</a></td>
-                <td><a href="{% url 'view-profile' appointment.patient.id %}">view profile</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

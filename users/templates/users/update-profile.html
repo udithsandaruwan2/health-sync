@@ -4,24 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background for the body */
+            font-family: Arial, sans-serif; /* Simple font for the page */
+        }
+        .container {
+            max-width: 600px; /* Max width for the container */
+            margin: 30px auto; /* Center the container */
+            padding: 20px; /* Padding inside the container */
+            background-color: #ffffff; /* White background for the form */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        h2 {
+            text-align: center; /* Center the heading */
+            margin-bottom: 20px; /* Space below the heading */
+        }
+        .messages {
+            list-style: none; /* Remove bullet points */
+            padding: 0; /* Remove padding */
+            margin-bottom: 20px; /* Space below the messages */
+        }
+        .messages li {
+            margin: 10px 0; /* Space between messages */
+            padding: 10px; /* Padding for each message */
+            border-radius: 4px; /* Rounded corners for messages */
+        }
+        .btn-update {
+            width: 100%; /* Full width for the button */
+            margin-top: 20px; /* Space above the button */
+        }
+    </style>
 </head>
 <body>
-    {% if messages %}
+    <div class="container">
+        
+        <h2>Update Profile</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-3">
+              <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+              {{ field }}
+              
+          </div>
+            {% endfor %}
+            <input type="submit" value="Update Profile" class="btn btn-primary btn-update">
+        </form>
+    </div>
 
-      {% for message in messages %}
-
-      <ul classes="messages">
-        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-      </ul>
-
-      {% endfor %}
-
-    {% endif %}
-    <h2>Update Profile</h2>
-    <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-        <input type="submit" value="Update Profile">
-    </form>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

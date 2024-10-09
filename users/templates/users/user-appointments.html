@@ -5,44 +5,128 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Appointments</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light gray background */
+            margin: 0; /* Remove default margin */
+            padding: 20px; /* Add some padding */
+        }
+
+        h1 {
+            text-align: center;
+            color: #495057; /* Darker color for the heading */
+            margin-bottom: 20px; /* Spacing below the heading */
+        }
+
+        .messages {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        .messages li {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            color: white;
+        }
+
+        /* Large back button style */
+        .back-button {
+            display: inline-block;
+            margin: 10px 0; /* Small margin for spacing */
+            padding: 10px 20px; /* Larger padding */
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Rounded corners */
+            text-align: center; /* Center text */
+            transition: background-color 0.3s; /* Smooth transition */
+            font-size: 16px; /* Slightly larger font size */
+        }
+
+        .back-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Style for the appointments list */
+        .appointments-list {
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Arrange items in a column */
+            gap: 15px; /* Space between cards */
+            margin-top: 20px; /* Spacing above the appointments */
+        }
+
+        .appointment-card {
+            display: flex; /* Use flexbox for horizontal layout */
+            justify-content: space-between; /* Space items evenly */
+            align-items: center; /* Center items vertically */
+            background-color: white; /* White background for cards */
+            border: 1px solid #dee2e6; /* Light gray border */
+            border-radius: 10px; /* Rounded corners */
+            padding: 15px; /* Inner padding */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            transition: transform 0.3s; /* Smooth scaling on hover */
+        }
+
+        .appointment-card:hover {
+            transform: scale(1.02); /* Slightly enlarge card on hover */
+        }
+
+        .appointment-card h3 {
+            margin: 0; /* Remove default margin */
+            color: #495057; /* Dark color for headings */
+        }
+
+        .appointment-card p {
+            margin: 5px 0; /* Spacing for paragraphs */
+            color: #6c757d; /* Muted text color */
+        }
+
+        .appointment-card .status {
+            font-weight: bold; /* Bold status text */
+        }
+
+        /* Action link styling */
+        .appointment-card a {
+            display: inline-block; /* Make the link block-level */
+            margin-top: 10px; /* Space above the link */
+            color: #dc3545; /* Red color for cancel link */
+            text-decoration: none; /* Remove underline */
+        }
+
+        .appointment-card a:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
 </head>
 <body>
     {% if messages %}
-
-      {% for message in messages %}
-
-      <ul classes="messages">
-        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
-      </ul>
-
-      {% endfor %}
-
-    {% endif %}
-    <a href="{% url 'dashboard' %}">back</a>
-    <h1>My Appointments</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Doctor</th>
-                <th>Specialization</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for appointment in appointments %}
-            <tr>
-                <td>{{ appointment.doctor.name }}</td>
-                <td>{{ appointment.doctor.specialization }}</td>
-                <td>{{ appointment.date }}</td>
-                <td>{{ appointment.time }}</td>
-                <td>{{ appointment.status }}</td>
-                <td><a href="{% url 'delete-appointment' appointment.id %}?page={{page_encrypted}}">cancel request</a></td>
-            </tr>
+        <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
             {% endfor %}
-        </tbody>
-    </table>
+        </ul>
+    {% endif %}
+
+    <a href="{% url 'dashboard' %}" class="back-button">Back to Dashboard</a>
+    <h1>My Appointments</h1>
+    <div class="appointments-list">
+        <div class="row justify-content-center text-center">
+            {% for appointment in appointments %}
+            <div class="appointment-card col-12"> <!-- Changed col-4 to col-12 for full width -->
+                <div>
+                    <h3>Doctor: {{ appointment.doctor.name }}</h3>
+                    <p>Specialization: {{ appointment.doctor.specialization }}</p>
+                    <p>Date: {{ appointment.date }}</p>
+                    <p>Time: {{ appointment.time }}</p>
+                    <p class="status">Status: {{ appointment.status }}</p>
+                </div>
+                <a href="{% url 'delete-appointment' appointment.id %}?page={{ page_encrypted }}">Cancel Request</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>

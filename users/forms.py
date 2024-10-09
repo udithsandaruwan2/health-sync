@@ -9,7 +9,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'email', 'username', 'password1', 'password2']
+        fields = ['first_name', 'email', 'password1', 'password2']
         labels = {
             'first_name':'Name', 
         }   
@@ -18,23 +18,19 @@ class CustomUserCreationForm(UserCreationForm):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
         self.fields['first_name'].widget.attrs.update(
-            {'placeholder': 'eg : Udith Sandaruwan', 'type':'text'},
+            {'type':'text', 'class':"form-control"}
         )
 
         self.fields['email'].widget.attrs.update(
-            {'placeholder':'eg : udith@eventarc.com', 'type':'email'}
-        )
-
-        self.fields['username'].widget.attrs.update(
-            {'placeholder': 'eg : udith002', 'type':'text'}
+            {'type':'email', 'class':"form-control"}
         )
 
         self.fields['password1'].widget.attrs.update(
-            {'placeholder': '*************', 'type':'password'}
+            {'type':'password', 'class':"form-control"}
         )
 
         self.fields['password2'].widget.attrs.update(
-            {'placeholder': '*************', 'type':'password'}
+            {'type':'password', 'class':"form-control"}
         )
 
 
@@ -42,6 +38,37 @@ class ProfileForm(ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'email', 'username', 'location', 'short_intro', 'bio', 'profile_image']
+    
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['email'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['username'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['location'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['short_intro'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['bio'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['profile_image'].widget.attrs.update(
+            {'class':"form-control"}
+        )
 
 
 class AppointmentForm(ModelForm):
@@ -52,5 +79,18 @@ class AppointmentForm(ModelForm):
             'appointment_date': forms.DateInput(attrs={'type': 'date'}),
             'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
         }
-        
+    
+        def __init__(self, *args, **kwargs):
+            super(AppointmentForm, self).__init__(*args, **kwargs)
 
+            self.fields['appointment_date'].widget.attrs.update(
+                {'class':"form-control"}
+            )
+
+            self.fields['appointment_time'].widget.attrs.update(
+                {'class':"form-control"}
+            )
+
+            self.fields['description'].widget.attrs.update(
+                {'class':"form-control"}
+            )
