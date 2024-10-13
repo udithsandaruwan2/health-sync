@@ -111,22 +111,6 @@
     {% endif %}
 
     <a href="{% url 'dashboard' %}" class="back-button">Back to Dashboard</a>
-    <h1>My Appointments</h1>
-    <div class="appointments-list">
-        <div class="row justify-content-center text-center">
-            {% for appointment in appointments %}
-            <div class="appointment-card col-12"> <!-- Changed col-4 to col-12 for full width -->
-                <div>
-                    <h3>Doctor: {{ appointment.doctor.name }}</h3>
-                    <p>Specialization: {{ appointment.doctor.specialization }}</p>
-                    <p>Date: {{ appointment.date }}</p>
-                    <p>Time: {{ appointment.time }}</p>
-                    <p class="status">Status: {{ appointment.status }}</p>
-                </div>
-                <a href="{% url 'delete-appointment' appointment.id %}?page={{ page_encrypted }}">Cancel Request</a>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    
 </body>
 </html>
