@@ -224,43 +224,11 @@
           Incilint sapiente illo quo praesentium officiis laudantium nostrum, ad adipisci cupiditate sit, quisquam aliquid. Officiis laudantium fuga ad voluptas aspernatur error fugiat quos facilis saepe quas fugit, beatae id quisquam.
         </p>
       </div>
-      <div class="row justify-content-center">
 
-        {% for doctor in doctores %}
-        {% if doctor.id != 'cd348c0b-1f97-4a50-948a-7ee43257c828' %}
-          <div class="col-sm-6 col-lg-4 d-flex justify-content-center">
-            <div class="box">
-              <div class="img-box" style="max-width: 300px; max-height: 400px;object-fit: cover;">
-                <img src="{{ doctor.profile_image.url }}" alt="">
-              </div>
-              <div class="detail-box">
-                <div class="social_box">
-                  <a href="">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-youtube" aria-hidden="true"></i>
-                  </a>
-                  <a href="">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                  </a>
-                </div>
-                <h5>{{ doctor.name }}</h5>
-                <h6>{{ doctor.specialization }}</h6>
-              </div>
-            </div>
-          </div>
-          {% endif %}
-        {% endfor %}
-      
-      </div>
-      
       <div class="btn-box">
-        <a href="">
-          View All
+        <a href="{% url 'doctors' %}">
+          View Doctors
+          <i class="fa fa-arrow-right" style="color: white;"></i>
         </a>
       </div>
     </div>

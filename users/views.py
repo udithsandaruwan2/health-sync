@@ -218,3 +218,19 @@ def singleProfileView(request, pk):
     
     context = {'profile': profile}
     return render(request, 'users/single-profile-view.html', context)
+
+def doctors(request):
+    page = 'doctors'
+    context = {'page':page}
+    return render(request, 'users/doctors.html', context)
+
+def about(request):
+    page = 'about'
+    context = {'page':page}
+    return render(request, 'users/about.html', context)
+
+def contactUs(request):
+    page = 'contact-us'
+    context = {'page':page}
+    return render(request, 'users/contact-us.html', context)
+    

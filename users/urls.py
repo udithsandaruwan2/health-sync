@@ -20,4 +20,8 @@ urlpatterns = [
     path('profile-view/<str:pk>/', views.singleProfileView, name='view-profile'),
     path('update-profile/', views.updateProfile, name='update-profile'),
     
+    path('doctors/', views.doctors, name='doctors'),
+    path('about/', views.about, name='about'),
+    path('contact-us/', views.contactUs, name='contact-us')
+    
 ]

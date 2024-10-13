@@ -36,7 +36,15 @@
 
 </head>
 
+{% if page == 'doctors' or page == 'about' or page == 'contact-us' %}
+
+<body class="sub_page">
+
+{% else %}
+
 <body>
+
+{% endif %}
 
     <!-- {% if messages %}
 
