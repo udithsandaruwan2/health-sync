@@ -37,7 +37,11 @@ class CustomUserCreationForm(UserCreationForm):
 class ProfileForm(ModelForm):
     class Meta:
         model = Profile
-        fields = ['name', 'email', 'username', 'location', 'short_intro', 'bio', 'profile_image']
+        fields = ['name', 'email', 'username', 'location', 'short_intro', 'bio', 'profile_image', 'date_of_birth', 'gender', 'language']
+        
+        widgets = {
+            'date_of_birth': forms.DateInput(attrs={'type': 'date'}),
+        }
     
     def __init__(self, *args, **kwargs):
         super(ProfileForm, self).__init__(*args, **kwargs)
@@ -67,6 +71,18 @@ class ProfileForm(ModelForm):
         )
 
         self.fields['profile_image'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['date_of_birth'].widget.attrs.update(
+            {'class':"form-control", 'type': 'date', 'id': 'dob'}
+        )
+
+        self.fields['gender'].widget.attrs.update(
+            {'class':"form-control"}
+        )
+
+        self.fields['language'].widget.attrs.update(
             {'class':"form-control"}
         )
 

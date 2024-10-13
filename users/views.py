@@ -105,11 +105,13 @@ def userDashboard(request):
         profile = request.user.profile
     except AttributeError:
         return redirect('login')
+    page_encrypted = encrypt_message(page)
     
-    doctors = Profile.objects.all().filter(user_type=2)
+    appointments = Appointment.objects.all().filter(patient=profile, status=1)
+    
     points, created = LoyaltyPoint.objects.get_or_create(user=profile)
     
-    context = {'page': page, 'profile':profile, 'doctors': doctors, 'points': points}
+    context = {'page': page, 'profile':profile, 'points': points, 'appointments': appointments, 'page_encrypted': page_encrypted}
     return render(request, 'users/user-dashboard.html', context)
 
 @login_required(login_url="login")
@@ -135,28 +137,9 @@ def singleAppointment(request, pk):
     context = {'profile': profile, 'doctor': doctor, 'form':form}
     return render(request, 'users/single-appointment.html', context)
 
-@login_required(login_url="login")
-def userAppointments(request):
-    page = 'user-appointments'
-    page_encrypted = encrypt_message(page)
-    try:
-        profile = request.user.profile
-    except AttributeError:
-        return redirect('login')
-    appointments = Appointment.objects.all().filter(patient=profile)
-    
-    context = {'page':page, 'profile': profile, 'appointments': appointments, 'page_encrypted': page_encrypted}
-    return render(request, 'users/user-appointments.html', context)
-
-@login_required(login_url="login")
-def singleProfile(request, pk):
-    profile = Profile.objects.get(id=pk)
-    
-    context = {'profile': profile}
-    return render(request, 'users/single-profile.html', context)
-
 @login_required(login_url='login')
 def updateProfile(request):
+    profile = request.user.profile
     try:
         profile = request.user.profile
     except AttributeError:
@@ -167,9 +150,9 @@ def updateProfile(request):
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
-            return redirect('profile', pk=profile.id)
+            return redirect('update-profile')
 
-    context = {'form': form}
+    context = {'form': form, 'profile': profile}
     return render(request, 'users/update-profile.html', context)
 
 @login_required(login_url='login')
@@ -183,8 +166,8 @@ def deleteAppointment(request, pk):
         appointment.status = 3
         appointment.save()  # Make sure to save the status change
         # Redirect based on the page context
-        if page == 'user-appointments':
-            return redirect('user-appointments')
+        if page == 'user-dashboard':
+            return redirect('dashboard')
         else:
             return redirect('requested-appointment')
     

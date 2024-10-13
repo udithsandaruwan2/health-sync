@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,12 +11,12 @@
     />
     <link
       rel="icon"
-      href="../assets/img/kaiadmin/favicon.ico"
+      href=" {% static 'ui-kit-dash/assets/img/kaiadmin/favicon.ico' %} "
       type="image/x-icon"
     />
 
     <!-- Fonts and icons -->
-    <script src="../assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/plugin/webfont/webfont.min.js' %} "></script>
     <script>
       WebFont.load({
         google: { families: ["Public Sans:300,400,500,600,700"] },
@@ -25,7 +27,7 @@
             "Font Awesome 5 Brands",
             "simple-line-icons",
           ],
-          urls: ["../assets/css/fonts.min.css"],
+          urls: [" {% static 'ui-kit-dash/assets/css/fonts.min.css' %} "],
         },
         active: function () {
           sessionStorage.fonts = true;
@@ -34,17 +36,17 @@
     </script>
 
     <!-- CSS Files -->
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../assets/css/plugins.min.css" />
-    <link rel="stylesheet" href="../assets/css/kaiadmin.min.css" />
+    <link rel="stylesheet" href=" {% static 'ui-kit-dash/assets/css/bootstrap.min.css' %} " />
+    <link rel="stylesheet" href=" {% static 'ui-kit-dash/assets/css/plugins.min.css' %} " />
+    <link rel="stylesheet" href=" {% static 'ui-kit-dash/assets/css/kaiadmin.min.css' %} " />
 
     <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="../assets/css/demo.css" />
+    <link rel="stylesheet" href=" {% static 'ui-kit-dash/assets/css/demo.css' %} " />
   </head>
   <body>
     <div class="wrapper">
 
-        {%% include 'sidebar-dash.html' %%}
+        {% include 'sidebar-dash.html' %}
 
         {% block content %}
         
@@ -55,16 +57,16 @@
 
     </div>
     <!--   Core JS Files   -->
-    <script src="../assets/js/core/jquery-3.7.1.min.js"></script>
-    <script src="../assets/js/core/popper.min.js"></script>
-    <script src="../assets/js/core/bootstrap.min.js"></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/core/jquery-3.7.1.min.js' %} "></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/core/popper.min.js' %} "></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/core/bootstrap.min.js' %} "></script>
 
     <!-- jQuery Scrollbar -->
-    <script src="../assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %} "></script>
     <!-- Kaiadmin JS -->
-    <script src="../assets/js/kaiadmin.min.js"></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/kaiadmin.min.js' %} "></script>
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="../assets/js/setting-demo2.js"></script>
+    <script src=" {% static 'ui-kit-dash/assets/js/setting-demo2.js' %} "></script>
     <script>
       $("#displayNotif").on("click", function () {
         var placementFrom = $("#notify_placement_from option:selected").val();
