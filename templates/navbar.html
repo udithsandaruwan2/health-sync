@@ -26,11 +26,22 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'contact-us' %}">Contact Us</a>
             </li>
-            <div class="btn-box" style="border-radius: 25px; border: 2px solid #ffffff; padding: 10px; background-color: white;padding: 6px; padding-right: 25px; padding-left: 25px; margin-top: -5px;">
-              <a href="{% url 'login' %}" class="btn1" style="color: #42a88a; text-decoration: none; font-size: 16px; font-weight: bold;">
-                  Login
-              </a>
-          </div>
+
+            {% if profile is None %}
+    <div class="btn-box" style="border-radius: 25px; border: 2px solid #ffffff; padding: 10px; background-color: white; padding-right: 25px; padding-left: 25px; margin-top: -5px;">
+        <a href="{% url 'login' %}" class="btn1" style="color: #42a88a; text-decoration: none; font-size: 16px; font-weight: bold;">
+            Login
+        </a>
+    </div>
+{% else %}
+    <div class="btn-box" style="border-radius: 25px; border: 2px solid #ffffff; padding: 10px; background-color: white; padding-right: 25px; padding-left: 25px; margin-top: -5px;">
+        <a href="{% url 'dashboard' %}" class="btn1" style="color: #42a88a; text-decoration: none; font-size: 16px; font-weight: bold;">
+            Dashboard
+        </a>
+    </div>
+{% endif %}
+
+
           
           </ul>
         </div>

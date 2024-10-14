@@ -6,6 +6,8 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('register/', views.register_view, name='register'),
     
+    path('otp-verification/', views.otp_verification, name='otp-verification'),
+    
     path('', views.index, name='index'),    
     path('dashboard/', views.userDashboard, name='dashboard'),
     path('doctor/portal/', views.doctorDashboard, name='doctor-dashboard'),
@@ -23,5 +25,7 @@ urlpatterns = [
     path('doctors/', views.doctors, name='doctors'),
     path('about/', views.about, name='about'),
     path('contact-us/', views.contactUs, name='contact-us')
+    
+    
     
 ]

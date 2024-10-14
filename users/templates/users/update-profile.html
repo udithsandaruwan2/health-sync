@@ -56,7 +56,7 @@
             <!-- Profile Image -->
             <div class="profile-image mt-4">
                 {% if profile.profile_image %}
-                    <img src="{{ profile.profile_image.url }}" alt="Profile Image" style="width: 170px; height: 170px; border: white solid; border-radius: 50%;">
+                    <img src="{{ profile.profile_image.url }}" alt="Profile Image" style="width: 170px; height: 170px; border: white solid; border-radius: 50%; object-fit: cover;">
                 {% else %}
                     <span>No Image Available</span>
                 {% endif %}

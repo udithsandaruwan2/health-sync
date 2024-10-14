@@ -13,6 +13,7 @@ from .models import Profile, Appointment, LoyaltyPoint
 from .utils import encrypt_message, decrypt_message
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from .utils import send_email, auth_with_email
 
 load_dotenv()
 
@@ -38,12 +39,24 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.success(request, 'User login successfully!')
-                if user.profile.user_type == 1:
-                    return redirect('dashboard')
-                
-                if user.profile.user_type == 2:
-                    return redirect('doctor-dashboard')
+
+                # Authenticate with email (OTP) - example function
+                auth_call = auth_with_email(user)
+                auth_code = auth_call['encrypted_otp']
+                auth_message = auth_call['message']
+
+                if auth_message == '200':
+                    messages.success(request, 'User logged in successfully! OTP sent to your email.')
+
+                    # Store encrypted OTP and user ID in session (server-side)
+                    request.session['auth_code'] = auth_code
+                    request.session['user_id'] = user.id
+
+                    # Redirect to OTP verification page (no need for URL parameters)
+                    return redirect('otp-verification')
+
+                else:
+                    messages.error(request, 'An error occurred during login!')
             else:
                 messages.error(request, 'Username or password is incorrect!')
         else:
@@ -51,6 +64,43 @@ def login_view(request):
 
     context = {'page': page, 'site_key': site_key}
     return render(request, 'users/login-register.html', context)
+
+def otp_verification(request):
+    page = 'otp-verification'
+
+    try:
+        user_id = request.session.get('user_id')
+        auth_code = request.session.get('auth_code')
+        str_otp = decrypt_message(auth_code)
+
+        # Fetch the user by ID
+        user = get_object_or_404(User, id=user_id)
+
+    except Exception as e:
+        messages.error(request, 'Invalid or corrupted data. Please try again.')
+        return redirect('login')
+
+    if request.method == 'POST':
+        otp_entered = request.POST['otp'].strip()
+
+        if otp_entered == str_otp:
+            messages.success(request, 'OTP verified successfully!')
+            
+            # Example of sending email
+            send_email('User Login', f'User {user.username} logged in successfully!', [user.email])
+            
+            
+
+            # Redirect based on user type
+            if user.profile.user_type == 1:
+                return redirect('dashboard')
+            elif user.profile.user_type == 2:
+                return redirect('doctor-dashboard')
+        else:
+            messages.error(request, 'Invalid OTP. Please try again.')
+
+    context = {'page': page, 'user': user}
+    return render(request, 'users/otp-verification.html', context)
 
 def register_view(request):
     page = 'register'
@@ -75,9 +125,22 @@ def register_view(request):
                 user.username = user.username.lower()
                 user.save()
                 messages.success(request, 'User account was created!')
-
                 login(request, user)
-                return redirect('dashboard')
+                
+                # Authenticate with email (OTP) - example function
+                auth_call = auth_with_email(user)
+                auth_code = auth_call['encrypted_otp']
+                auth_message = auth_call['message']
+
+                if auth_message == '200':
+                    messages.success(request, 'User logged in successfully! OTP sent to your email.')
+
+                    # Store encrypted OTP and user ID in session (server-side)
+                    request.session['auth_code'] = auth_code
+                    request.session['user_id'] = user.id
+
+                    # Redirect to OTP verification page (no need for URL parameters)
+                    return redirect('otp-verification')
             else:
                 messages.error(request, 'An error occurred during registration!')
         else:
@@ -88,15 +151,22 @@ def register_view(request):
 
 @login_required(login_url="login")
 def logout_view(request):
+    user = request.user
     logout(request)
     messages.info(request, 'User was logged out!')
+    send_email('User Logout', f'User {user.username} logged out successfully!', [user.email])
     return redirect('login')
 
 def index(request):
     page = 'index'
-    doctores = Profile.objects.all().filter(user_type=2)
-    context = {'page': page, 'doctores': doctores}
+    profile = None  # Use None instead of 'none'
+    
+    if request.user.is_authenticated:
+        profile = request.user.profile
+    
+    context = {'page': page, 'profile': profile}
     return render(request, 'users/index.html', context)
+
 
 @login_required(login_url="login")
 def userDashboard(request):
@@ -221,17 +291,29 @@ def singleProfileView(request, pk):
 
 def doctors(request):
     page = 'doctors'
+    profile = None  # Use None instead of 'none'
+    
+    if request.user.is_authenticated:
+        profile = request.user.profile
     doctors = Profile.objects.all().filter(user_type=2)
-    context = {'page':page, 'doctors':doctors}
+    context = {'page':page, 'doctors':doctors, 'profile':profile}
     return render(request, 'users/doctors.html', context)
 
 def about(request):
     page = 'about'
-    context = {'page':page}
+    profile = None  # Use None instead of 'none'
+    
+    if request.user.is_authenticated:
+        profile = request.user.profile
+    context = {'page':page, 'profile': profile}
     return render(request, 'users/about.html', context)
 
 def contactUs(request):
     page = 'contact-us'
-    context = {'page':page}
+    profile = None  # Use None instead of 'none'
+    
+    if request.user.is_authenticated:
+        profile = request.user.profile
+    context = {'page':page, 'profile':profile}
     return render(request, 'users/contact-us.html', context)
     

@@ -9,7 +9,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'email', 'password1', 'password2']
+        fields = ['first_name', 'username', 'email', 'password1', 'password2']
         labels = {
             'first_name':'Name', 
         }   
@@ -18,6 +18,10 @@ class CustomUserCreationForm(UserCreationForm):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
 
         self.fields['first_name'].widget.attrs.update(
+            {'type':'text', 'class':"form-control"}
+        )
+        
+        self.fields['username'].widget.attrs.update(
             {'type':'text', 'class':"form-control"}
         )
 
