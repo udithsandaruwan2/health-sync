@@ -15,6 +15,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv() 
 from decouple import config
+import os
+import logging
+from logging.handlers import TimedRotatingFileHandler
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -45,6 +48,8 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     
     'captcha',
+    
+    'csp',
     
     
 ]
@@ -153,7 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 RECAPTCHA_PUBLIC_KEY = os.getenv('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
 
-SESSION_COOKIE_AGE = 900
+SESSION_COOKIE_AGE = 9000  # Set the session expiry to 15 minutes
 
 LOGIN_URL = '/login/'  # URL of your login view
 LOGOUT_REDIRECT_URL = '/login/'  # Redirect to login page after logout
@@ -163,3 +168,96 @@ LOGOUT_REDIRECT_URL = '/login/'  # Redirect to login page after logout
 SECRET_KEY_ENCRYPTION = config('SECRET_KEY_ENCRYPTION')
 
 
+# Allow content from the same origin and specified external sources
+CSP_DEFAULT_SRC = ("'self'",)  # Default policy for all content types
+
+# Allow scripts from the same origin, Google APIs, jsDelivr, and Cloudflare
+CSP_SCRIPT_SRC = (
+    "'self'",
+    "https://www.google.com",
+    "https://maps.googleapis.com",
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com",
+)
+
+# Allow styles from the same origin, Google Fonts, jsDelivr, and Cloudflare
+CSP_STYLE_SRC = (
+    "'self'",
+    "https://fonts.googleapis.com",  # For Google Fonts
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com",
+)
+
+# Allow images from the same origin, Google, and inline images (data URIs)
+CSP_IMG_SRC = (
+    "'self'",
+    "https://www.google.com",
+    "https://maps.googleapis.com",
+    "data:",  # Allow inline images (data URIs)
+)
+
+# Allow fonts from the same origin and Google Fonts
+CSP_FONT_SRC = (
+    "'self'",
+    "https://fonts.gstatic.com",
+)
+
+# Prevent embedding the site in frames, except from self
+CSP_FRAME_ANCESTORS = ("'self'",)
+
+# Allow connections (e.g., WebSockets) to these sources
+CSP_CONNECT_SRC = (
+    "'self'",
+    "https://maps.googleapis.com",
+    "https://cdn.jsdelivr.net",
+    "https://cdnjs.cloudflare.com",
+)
+
+
+
+
+# Define the logs directory
+LOG_DIR = os.path.join(BASE_DIR, 'logs')
+
+# Create the logs directory if it doesn't exist
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
+# Path for the main log file
+LOG_FILE = os.path.join(LOG_DIR, 'activity.log')
+
+# LOGGING configuration for Django
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'detailed': {
+            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(module)s - %(funcName)s - %(lineno)d',
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': 'INFO',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': LOG_FILE,
+            'when': 'm',  # Rotates every minute
+            'interval': 5,  # Set to 5 minutes interval
+            'formatter': 'detailed',  # Use the detailed formatter
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'myapp': {  # Replace with your app name
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+}

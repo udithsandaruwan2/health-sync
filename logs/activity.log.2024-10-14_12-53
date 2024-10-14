@@ -1,0 +1,141 @@
+2024-10-14 12:53:43,116 - django - INFO - Rendering doctors page. - views - doctors - 343
+2024-10-14 12:53:43,119 - django.server - INFO - "GET /doctors/ HTTP/1.1" 200 10929 - basehttp - log_message - 213
+2024-10-14 12:53:43,166 - django.request - WARNING - Not Found: /doctors/{% static 'ui-kit-public/js/jquery-3.4.1.min.js    ' %} - log - log_response - 248
+2024-10-14 12:53:43,166 - django.server - WARNING - "GET /doctors/%7B%%20static%20'ui-kit-public/js/jquery-3.4.1.min.js%20%20%20%20'%20%%7D HTTP/1.1" 404 7220 - basehttp - log_message - 213
+2024-10-14 12:53:44,276 - django - INFO - Rendering user dashboard... - views - userDashboard - 201
+2024-10-14 12:53:44,281 - django.server - INFO - "GET /dashboard/ HTTP/1.1" 200 15412 - basehttp - log_message - 213
+2024-10-14 12:53:44,352 - django.request - WARNING - Not Found: /assets/img/kaiadmin/logo_light.svg - log - log_response - 248
+2024-10-14 12:53:44,353 - django.server - WARNING - "GET /assets/img/kaiadmin/logo_light.svg HTTP/1.1" 404 7081 - basehttp - log_message - 213
+2024-10-14 12:53:44,368 - django.request - WARNING - Not Found: /assets/img/profile2.jpg - log - log_response - 248
+2024-10-14 12:53:44,369 - django.server - WARNING - "GET /assets/img/profile2.jpg HTTP/1.1" 404 7048 - basehttp - log_message - 213
+2024-10-14 12:53:51,755 - django - INFO - User admin logged out successfully. - views - logout_view - 170
+2024-10-14 12:53:51,756 - django.server - INFO - "GET /logout/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:53:51,762 - django.server - INFO - "GET /login/ HTTP/1.1" 200 2496 - basehttp - log_message - 213
+2024-10-14 12:54:14,801 - django.server - INFO - "POST /login/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:54:14,814 - django.server - INFO - "GET /otp-verification/ HTTP/1.1" 200 1352 - basehttp - log_message - 213
+2024-10-14 12:54:42,705 - django.server - INFO - "POST /otp-verification/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:54:42,717 - django - INFO - Rendering doctor dashboard for user udith123. - views - doctorDashboard - 287
+2024-10-14 12:54:42,720 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4408 - basehttp - log_message - 213
+2024-10-14 12:54:42,775 - django.server - INFO - "GET /media/profiles/Untitled-1.png HTTP/1.1" 200 775368 - basehttp - log_message - 213
+2024-10-14 12:54:49,462 - django - INFO - Rendering update profile page for user udith123. - views - updateProfile - 253
+2024-10-14 12:54:49,468 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6646 - basehttp - log_message - 213
+2024-10-14 12:55:04,295 - django.server - INFO - "GET /admin/login/?next=/admin/auth/user/ HTTP/1.1" 200 4004 - basehttp - log_message - 213
+2024-10-14 12:55:06,653 - django.server - INFO - "POST /admin/login/?next=/admin/auth/user/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:55:06,678 - django.server - INFO - "GET /admin/auth/user/ HTTP/1.1" 200 13572 - basehttp - log_message - 213
+2024-10-14 12:55:06,719 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:08,403 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 10453 - basehttp - log_message - 213
+2024-10-14 12:55:08,445 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:09,676 - django.server - INFO - "GET /admin/users/appointment/add/ HTTP/1.1" 200 15350 - basehttp - log_message - 213
+2024-10-14 12:55:09,716 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:21,652 - django.server - INFO - "POST /admin/users/appointment/add/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:55:21,678 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 11069 - basehttp - log_message - 213
+2024-10-14 12:55:21,719 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:24,436 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:24,439 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:24,483 - django.server - INFO - "GET /media/profiles/unnamed_uZfpXE4.png HTTP/1.1" 200 327467 - basehttp - log_message - 213
+2024-10-14 12:55:26,123 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:26,125 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:26,550 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:26,552 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:26,821 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:26,823 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:27,031 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:27,033 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:27,248 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:27,251 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:27,472 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:27,474 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:27,676 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:27,679 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:27,897 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:27,898 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:31,403 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 10814 - basehttp - log_message - 213
+2024-10-14 12:55:31,437 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:32,178 - django.server - INFO - "GET /admin/users/appointment/dad0b645-1f96-4d40-9716-3dfade650055/change/ HTTP/1.1" 200 15770 - basehttp - log_message - 213
+2024-10-14 12:55:32,217 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:37,903 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:55:37,906 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6648 - basehttp - log_message - 213
+2024-10-14 12:55:45,963 - django.server - INFO - "POST /admin/users/appointment/dad0b645-1f96-4d40-9716-3dfade650055/change/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:55:45,985 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 11062 - basehttp - log_message - 213
+2024-10-14 12:55:46,022 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:55:48,342 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:48,345 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:49,033 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:49,034 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:49,188 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:49,190 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:49,471 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:55:49,473 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:55:53,336 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:55:53,340 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6648 - basehttp - log_message - 213
+2024-10-14 12:56:00,432 - django.server - INFO - "GET /admin/users/appointment/dad0b645-1f96-4d40-9716-3dfade650055/change/ HTTP/1.1" 200 15761 - basehttp - log_message - 213
+2024-10-14 12:56:00,468 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:56:06,401 - django.server - INFO - "POST /admin/users/appointment/dad0b645-1f96-4d40-9716-3dfade650055/change/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:56:06,424 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 11062 - basehttp - log_message - 213
+2024-10-14 12:56:06,463 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:56:07,807 - django.server - INFO - "GET /admin/users/appointment/add/ HTTP/1.1" 200 15350 - basehttp - log_message - 213
+2024-10-14 12:56:07,845 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:56:17,940 - django.server - INFO - "POST /admin/users/appointment/add/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:56:17,967 - django.server - INFO - "GET /admin/users/appointment/ HTTP/1.1" 200 11415 - basehttp - log_message - 213
+2024-10-14 12:56:18,003 - django.server - INFO - "GET /admin/jsi18n/ HTTP/1.1" 200 3342 - basehttp - log_message - 213
+2024-10-14 12:56:21,189 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:56:21,190 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:56:21,609 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:56:21,610 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:56:21,762 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:56:21,764 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:56:21,934 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:56:21,936 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4413 - basehttp - log_message - 213
+2024-10-14 12:56:29,905 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:56:29,914 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 5008 - basehttp - log_message - 213
+2024-10-14 12:56:41,417 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:56:41,422 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 5008 - basehttp - log_message - 213
+2024-10-14 12:56:46,799 - django - INFO - Rendering single profile view for profile supun123. - views - singleProfileView - 327
+2024-10-14 12:56:46,802 - django.server - INFO - "GET /profile-view/994e34fb-5f3c-48ed-8020-1dae60a9bf2d/ HTTP/1.1" 200 1060 - basehttp - log_message - 213
+2024-10-14 12:56:46,863 - django.request - WARNING - Not Found: /media/profiles/user-default.png - log - log_response - 248
+2024-10-14 12:56:46,864 - django.server - WARNING - "GET /media/profiles/user-default.png HTTP/1.1" 404 7287 - basehttp - log_message - 213
+2024-10-14 12:56:51,333 - django - INFO - Rendering approve appointment page for appointment dad0b645-1f96-4d40-9716-3dfade650055. - views - approveAppointment - 321
+2024-10-14 12:56:51,335 - django.server - INFO - "GET /approve-appointment/dad0b645-1f96-4d40-9716-3dfade650055/ HTTP/1.1" 200 541 - basehttp - log_message - 213
+2024-10-14 12:56:53,031 - django - INFO - Appointment dad0b645-1f96-4d40-9716-3dfade650055 approved by user admin. - views - approveAppointment - 317
+2024-10-14 12:56:53,033 - django.server - INFO - "POST /approve-appointment/dad0b645-1f96-4d40-9716-3dfade650055/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:56:53,041 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:56:53,044 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 4472 - basehttp - log_message - 213
+2024-10-14 12:56:54,802 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:56:54,806 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4911 - basehttp - log_message - 213
+2024-10-14 12:57:10,163 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:57:10,166 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 4304 - basehttp - log_message - 213
+2024-10-14 12:57:16,826 - django - INFO - Rendering doctor dashboard for user admin. - views - doctorDashboard - 287
+2024-10-14 12:57:16,829 - django.server - INFO - "GET /doctor/portal/ HTTP/1.1" 200 4911 - basehttp - log_message - 213
+2024-10-14 12:57:35,277 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:57:35,279 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 4304 - basehttp - log_message - 213
+2024-10-14 12:57:54,484 - django - INFO - Rendering single profile view for profile supun123. - views - singleProfileView - 327
+2024-10-14 12:57:54,486 - django.server - INFO - "GET /profile-view/994e34fb-5f3c-48ed-8020-1dae60a9bf2d/ HTTP/1.1" 200 1060 - basehttp - log_message - 213
+2024-10-14 12:57:54,543 - django.request - WARNING - Not Found: /media/profiles/user-default.png - log - log_response - 248
+2024-10-14 12:57:54,544 - django.server - WARNING - "GET /media/profiles/user-default.png HTTP/1.1" 404 7287 - basehttp - log_message - 213
+2024-10-14 12:58:00,400 - django - INFO - Rendering requested appointments page for doctor admin. - views - requestedAppointment - 303
+2024-10-14 12:58:00,402 - django.server - INFO - "GET /requested-appointment/ HTTP/1.1" 200 4304 - basehttp - log_message - 213
+2024-10-14 12:58:03,648 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:03,652 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6648 - basehttp - log_message - 213
+2024-10-14 12:58:08,105 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:08,111 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6648 - basehttp - log_message - 213
+2024-10-14 12:58:28,173 - django - INFO - Profile for user admin updated successfully. - views - updateProfile - 247
+2024-10-14 12:58:28,174 - django.server - INFO - "POST /update-profile/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 12:58:28,182 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:28,186 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6661 - basehttp - log_message - 213
+2024-10-14 12:58:28,224 - django.server - INFO - "GET /media/profiles/Screenshot_2024-04-17_201331.png HTTP/1.1" 200 205576 - basehttp - log_message - 213
+2024-10-14 12:58:31,451 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:31,455 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6661 - basehttp - log_message - 213
+2024-10-14 12:58:31,484 - django.server - INFO - "GET /media/profiles/Screenshot_2024-04-17_201331.png HTTP/1.1" 304 0 - basehttp - log_message - 213
+2024-10-14 12:58:32,373 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:32,377 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6661 - basehttp - log_message - 213
+2024-10-14 12:58:32,417 - django.server - INFO - "GET /media/profiles/Screenshot_2024-04-17_201331.png HTTP/1.1" 304 0 - basehttp - log_message - 213
+2024-10-14 12:58:35,634 - django - INFO - Rendering user dashboard... - views - userDashboard - 201
+2024-10-14 12:58:35,638 - django.server - INFO - "GET /dashboard/ HTTP/1.1" 200 15438 - basehttp - log_message - 213
+2024-10-14 12:58:35,709 - django.request - WARNING - Not Found: /assets/img/profile2.jpg - log - log_response - 248
+2024-10-14 12:58:35,715 - django.request - WARNING - Not Found: /assets/img/kaiadmin/logo_light.svg - log - log_response - 248
+2024-10-14 12:58:35,715 - django.server - WARNING - "GET /assets/img/kaiadmin/logo_light.svg HTTP/1.1" 404 7081 - basehttp - log_message - 213
+2024-10-14 12:58:35,715 - django.server - WARNING - "GET /assets/img/profile2.jpg HTTP/1.1" 404 7048 - basehttp - log_message - 213
+2024-10-14 12:58:35,718 - django.server - INFO - "GET /media/profiles/Screenshot_2024-04-17_201331.png HTTP/1.1" 304 0 - basehttp - log_message - 213
+2024-10-14 12:58:42,945 - django - INFO - Rendering update profile page for user admin. - views - updateProfile - 253
+2024-10-14 12:58:42,949 - django.server - INFO - "GET /update-profile/ HTTP/1.1" 200 6661 - basehttp - log_message - 213
+2024-10-14 12:58:42,991 - django.server - INFO - "GET /media/profiles/Screenshot_2024-04-17_201331.png HTTP/1.1" 304 0 - basehttp - log_message - 213

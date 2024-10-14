@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
-    <!-- Bootstrap CSS -->
+
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -59,16 +59,197 @@
             {% for field in form %}
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field }} <!-- Add Bootstrap class to form fields -->
+                {{ field }} 
             </div>
             {% endfor %}
             <button type="submit" class="btn btn-primary">Set</button>
         </form>
     </div>
 
-    <!-- Bootstrap JS (optional) -->
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="apple-touch-icon" sizes="76x76" href="{% static 'ui-kit-pro/assets/img/apple-icon.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'ui-kit-pro/assets/img/favicon.png' %}">
+  <title>
+    Material Dashboard 2 by Creative Tim
+  </title>
+  <!--     Fonts and icons     -->
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+<!-- Nucleo Icons -->
+<link href="{% static 'ui-kit-pro/assets/css/nucleo-icons.css' %}" rel="stylesheet" />
+<link href="{% static 'ui-kit-pro/assets/css/nucleo-svg.css' %}" rel="stylesheet" />
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<!-- CSS Files -->
+<link id="pagestyle" href="{% static 'ui-kit-pro/assets/css/material-dashboard.css' %}" rel="stylesheet" />
+<!-- Nepcha Analytics (nepcha.com) -->
+<!-- Nepcha is a easy-to-use web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. -->
+<script defer data-site="YOUR_DOMAIN_HERE" src="https://api.nepcha.com/js/nepcha-analytics.js"></script>
+<style>
+    .page-header {
+    background-image: url('static/ui-kit-pro/assets/img/img.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+</style>
+</head>
+
+<body class="g-sidenav-show bg-gray-200">
+
+    <div class="container-fluid px-2 px-md-4">
+        <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://images.unsplash.com/photo-1728412390002-ca0567b27c83?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-size: cover; background-position: center;">
+            <span class="mask bg-gradient-dark opacity-6"></span>
+            </div>
+    
+    
+      <div class="card card-body mx-3 mx-md-4 mt-n6">
+        <div class="row gx-4 mb-2">
+          <div class="col-auto">
+            <div class="avatar avatar-xl position-relative">
+              <img src="{{ doctor.profile_image.url }}" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+            </div>
+          </div>
+          <div class="col-auto my-auto">
+            <div class="h-100">
+              <h5 class="mb-1">
+                {{ doctor.name }}
+              </h5>
+              <p class="mb-0 font-weight-normal text-sm">
+                {{ doctor.specialization }}
+              </p>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="row">
+
+
+
+            <div class="col-12 col-xl-6">
+                <div class="card card-plain h-100">
+                  <div class="card-header pb-0 p-3">
+                    <div class="row">
+                      <div class="col-md-8 d-flex align-items-center">
+                        <h6 class="mb-0">Profile Information</h6>
+                      </div>
+                      <div class="col-md-4 text-end">
+                        <a href="javascript:;">
+                          <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-body p-3">
+                    <p class="text-sm">
+                        {{ doctor.bio }}
+                    </p>
+                    <hr class="horizontal gray-light my-4">
+                    <ul class="list-group">
+                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; {{ doctor.email }}</li>
+                      <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; {{ doctor.location }}</li>
+                      <li class="list-group-item border-0 ps-0 pb-0">
+                        <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                        <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                          <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                          <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                          <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+
+            <div class="col-12 col-xl-6">
+              <div class="card card-plain h-100">
+                <div class="card-header pb-0 p-3">
+                  <div class="row">
+                    <div class="col-md-8 d-flex align-items-center">
+                      <h6 class="mb-0">Profile Information</h6>
+                    </div>
+                    <div class="col-md-4 text-end">
+                      <a href="javascript:;">
+                        <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body p-3">
+                  <p class="text-sm">
+                    Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).
+                  </p>
+                  <hr class="horizontal gray-light my-4">
+                  <ul class="list-group">
+                    <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Full Name:</strong> &nbsp; Alec M. Thompson</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; alecthompson@mail.com</li>
+                    <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Location:</strong> &nbsp; USA</li>
+                    <li class="list-group-item border-0 ps-0 pb-0">
+                      <strong class="text-dark text-sm">Social:</strong> &nbsp;
+                      <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <i class="fab fa-facebook fa-lg"></i>
+                      </a>
+                      <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <i class="fab fa-twitter fa-lg"></i>
+                      </a>
+                      <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
+                        <i class="fab fa-instagram fa-lg"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!--   Core JS Files   -->
+  <script src="{% static 'ui-kit-pro/assets/js/core/popper.min.js' %}"></script>
+  <script src="{% static 'ui-kit-pro/assets/js/core/bootstrap.min.js' %}"></script>
+  <script src="{% static 'ui-kit-pro/assets/js/plugins/perfect-scrollbar.min.js' %}"></script>
+  <script src="{% static 'ui-kit-pro/assets/js/plugins/smooth-scrollbar.min.js' %}"></script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{% static 'ui-kit-pro/assets/js/material-dashboard.min.js' %}"></script>
+</body>
+
 </html>

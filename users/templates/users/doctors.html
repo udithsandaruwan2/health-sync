@@ -28,13 +28,17 @@
 
         {% for doctor in doctors %}
 
-        <a href="{% url 'appointment' doctor.id %}">
+        
 
         <div class="col-sm-6 col-lg-4 mx-auto">
           <div class="box">
+     
             <div class="img-box">
+              <a href="{% url 'appointment' doctor.id %}">
               <img src=" {% static 'ui-kit-public/images/d1.jpg' %} " alt="">
+            </a>
             </div>
+          
             <div class="detail-box">
               <div class="social_box">
                 <a href="">
@@ -60,7 +64,7 @@
             </div>
           </div>
         </div>
-        </a>
+    
 
 
 {% endfor %}

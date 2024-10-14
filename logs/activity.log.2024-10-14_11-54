@@ -1,0 +1,86 @@
+2024-10-14 11:42:08,094 - INFO - Watching for file changes with StatReloader
+2024-10-14 11:42:14,444 - INFO - D:\github\health-sync\healthsync\settings.py changed, reloading.
+2024-10-14 11:42:15,490 - INFO - Watching for file changes with StatReloader
+2024-10-14 11:43:52,067 - INFO - D:\github\health-sync\healthsync\settings.py changed, reloading.
+2024-10-14 11:43:53,382 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:44:16,997 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:44:18,502 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:44:27,370 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:44:28,596 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:48:27,120 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:48:28,370 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:49:12,192 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:49:13,462 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:11,038 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:12,531 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:17,236 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:18,242 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:25,103 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:26,015 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:28,532 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:29,873 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:33,484 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:34,493 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:50:48,803 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:50:49,992 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:51:13,139 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:51:14,579 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:51:24,442 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:51:25,775 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:51:36,615 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:51:37,883 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:51:56,987 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:51:58,418 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:52:17,059 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:52:18,030 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:52:27,961 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:52:29,335 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:52:42,180 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:52:43,487 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:52:59,064 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:00,337 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:07,738 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:09,017 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:27,012 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:28,094 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:34,617 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:35,648 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:40,779 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:42,014 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:44,790 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:45,718 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:49,233 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:50,607 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:52,724 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:53,976 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:53:57,190 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:53:58,452 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:02,578 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:03,917 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:05,895 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:06,959 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:11,472 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:12,486 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:15,130 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:16,074 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:19,681 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:20,859 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:22,938 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:23,911 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:30,711 - django.utils.autoreload - INFO - D:\github\health-sync\users\views.py changed, reloading. - autoreload - trigger_reload - 266
+2024-10-14 11:54:31,877 - django.utils.autoreload - INFO - Watching for file changes with StatReloader - autoreload - run_with_reloader - 668
+2024-10-14 11:54:36,923 - django - INFO - Rendering index page... - views - index - 182
+2024-10-14 11:54:36,953 - django.server - INFO - "GET / HTTP/1.1" 200 19066 - basehttp - log_message - 213
+2024-10-14 11:54:37,202 - django.request - WARNING - Not Found: /{% static 'ui-kit-public/js/jquery-3.4.1.min.js    ' %} - log - log_response - 248
+2024-10-14 11:54:37,203 - django.server - WARNING - "GET /%7B%%20static%20'ui-kit-public/js/jquery-3.4.1.min.js%20%20%20%20'%20%%7D HTTP/1.1" 404 7196 - basehttp - log_message - 213
+2024-10-14 11:54:56,554 - django.server - INFO - "GET /login/ HTTP/1.1" 200 2496 - basehttp - log_message - 213
+2024-10-14 11:55:16,142 - django.server - INFO - "POST /login/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 11:55:16,173 - django.server - INFO - "GET /otp-verification/ HTTP/1.1" 200 1352 - basehttp - log_message - 213
+2024-10-14 11:56:02,168 - django.server - INFO - "POST /otp-verification/ HTTP/1.1" 302 0 - basehttp - log_message - 213
+2024-10-14 11:56:02,201 - django - INFO - Rendering user dashboard... - views - userDashboard - 201
+2024-10-14 11:56:02,222 - django.server - INFO - "GET /dashboard/ HTTP/1.1" 200 14764 - basehttp - log_message - 213
+2024-10-14 11:56:02,455 - django.request - WARNING - Not Found: /assets/img/kaiadmin/logo_light.svg - log - log_response - 248
+2024-10-14 11:56:02,456 - django.server - WARNING - "GET /assets/img/kaiadmin/logo_light.svg HTTP/1.1" 404 7081 - basehttp - log_message - 213
+2024-10-14 11:56:02,485 - django.request - WARNING - Not Found: /assets/img/profile2.jpg - log - log_response - 248
+2024-10-14 11:56:02,486 - django.server - WARNING - "GET /assets/img/profile2.jpg HTTP/1.1" 404 7048 - basehttp - log_message - 213
+2024-10-14 11:56:02,674 - django.server - INFO - "GET /media/profiles/Untitled-1.png HTTP/1.1" 200 775368 - basehttp - log_message - 213
