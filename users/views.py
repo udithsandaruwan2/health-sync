@@ -221,7 +221,8 @@ def singleProfileView(request, pk):
 
 def doctors(request):
     page = 'doctors'
-    context = {'page':page}
+    doctors = Profile.objects.all().filter(user_type=2)
+    context = {'page':page, 'doctors':doctors}
     return render(request, 'users/doctors.html', context)
 
 def about(request):

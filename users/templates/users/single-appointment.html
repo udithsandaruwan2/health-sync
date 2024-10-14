@@ -59,7 +59,7 @@
             {% for field in form %}
             <div class="form-group">
                 <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                {{ field|add_class:"form-control" }} <!-- Add Bootstrap class to form fields -->
+                {{ field }} <!-- Add Bootstrap class to form fields -->
             </div>
             {% endfor %}
             <button type="submit" class="btn btn-primary">Set</button>
