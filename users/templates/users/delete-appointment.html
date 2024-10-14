@@ -19,10 +19,8 @@
                             <div class="mb-3">
                                 {% if page == 'user-dashboard' %}
                                     <a href="{% url 'dashboard' %}" class="btn btn-primary">Go Back</a>
-                                {% elif page == 'requested-appointment' %}
-                                    <a href="{% url 'requested-appointment' %}" class="btn btn-primary">Go Back</a>
                                 {% else %}
-                                    <a href="#" class="btn btn-primary">Go Back</a>
+                                    <a href="{% url 'requested-appointment' %}" class="btn btn-primary">Go Back</a>
                                 {% endif %}
                                 <button type="submit" class="btn btn-danger ml-2">Confirm</button>
                             </div>

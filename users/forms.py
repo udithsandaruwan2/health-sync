@@ -96,21 +96,10 @@ class AppointmentForm(ModelForm):
         model = Appointment
         fields = ['appointment_date', 'appointment_time', 'description']
         widgets = {
-            'appointment_date': forms.DateInput(attrs={'type': 'date'}),
-            'appointment_time': forms.TimeInput(attrs={'type': 'time'}),
+            'appointment_date': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'appointment_time': forms.TimeInput(attrs={'type': 'time', 'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'})
         }
     
-        def __init__(self, *args, **kwargs):
-            super(AppointmentForm, self).__init__(*args, **kwargs)
-
-            self.fields['appointment_date'].widget.attrs.update(
-                {'class':"form-control"}
-            )
-
-            self.fields['appointment_time'].widget.attrs.update(
-                {'class':"form-control"}
-            )
-
-            self.fields['description'].widget.attrs.update(
-                {'class':"form-control"}
-            )
+    def __init__(self, *args, **kwargs):
+        super(AppointmentForm, self).__init__(*args, **kwargs)

@@ -34,14 +34,20 @@
         </a>
     </div>
 {% else %}
+    {% if profile.user_type == 1 %}
     <div class="btn-box" style="border-radius: 25px; border: 2px solid #ffffff; padding: 10px; background-color: white; padding-right: 25px; padding-left: 25px; margin-top: -5px;">
         <a href="{% url 'dashboard' %}" class="btn1" style="color: #42a88a; text-decoration: none; font-size: 16px; font-weight: bold;">
             Dashboard
         </a>
     </div>
+    {% else %}
+    <div class="btn-box" style="border-radius: 25px; border: 2px solid #ffffff; padding: 10px; background-color: white; padding-right: 25px; padding-left: 25px; margin-top: -5px;">
+        <a href="{% url 'doctor-dashboard' %}" class="btn1" style="color: #42a88a; text-decoration: none; font-size: 16px; font-weight: bold;">
+            Dashboard
+        </a>
+    </div>
+    {% endif %}
 {% endif %}
-
-
           
           </ul>
         </div>

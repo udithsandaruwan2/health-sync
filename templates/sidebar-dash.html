@@ -5,14 +5,19 @@
     <div class="sidebar-logo">
       <!-- Logo Header -->
       <div class="logo-header" data-background-color="dark">
-        <a href=" {% url 'dashboard' %} " class="logo">
-          <img
-            src=" {% static 'ui-kit-dash/assets/img/kaiadmin/logo_light.svg' %} "
-            alt="navbar brand"
-            class="navbar-brand"
-            height="20"
-          />
+
+        {% if page == 'doctor-dashboard' %}
+
+        <a href=" {% url 'doctor-dashboard' %} " class="logo">
+          <h3 style="color: aliceblue;" class="mt-3">ORTHOC</h3>
         </a>
+
+        {% else %}
+        <a href="{% url 'dashboard' %}" class="logo">
+          <h3 style="color: aliceblue;" class="mt-3">ORTHOC</h3>
+        </a>
+        {% endif %}
+
         <div class="nav-toggle">
           <button class="btn btn-toggle toggle-sidebar">
             <i class="gg-menu-right"></i>
@@ -30,12 +35,28 @@
     <div class="sidebar-wrapper scrollbar scrollbar-inner">
       <div class="sidebar-content">
       <ul class="nav nav-secondary">
-        <li class="nav-item active">
+        <li class="nav-item {% if page == 'doctor-dashboard' %} active {% endif %}">
+          {% if page == 'doctor-dashboard' or page == 'request-appointment' %}
+          <a href="{% url 'doctor-dashboard' %}" class="collapsed" aria-expanded="false">
+          {% else %}
           <a href="{% url 'dashboard' %}" class="collapsed" aria-expanded="false">
+          {% endif %}
         <i class="fas fa-tachometer-alt"></i>
         <p>Dashboard</p>
           </a>
         </li>
+
+        {% if page == 'doctor-dashboard' or page == 'request-appointment' %}
+
+        <li class="nav-item {% if page == 'request-appointment' %} active {% endif %}">
+          <a href="{% url 'requested-appointment' %}" class="collapsed" aria-expanded="false">
+        <i class="fas fa-calendar-check"></i>
+        <p>Requests</p>
+          </a>
+        </li>
+
+        {% endif %}
+
         <li class="nav-item">
           <a href="{% url 'index' %}" class="collapsed" aria-expanded="false">
         <i class="fas fa-home"></i>
