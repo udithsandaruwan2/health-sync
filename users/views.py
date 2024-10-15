@@ -221,13 +221,13 @@ def singleAppointment(request, pk):
             appointment.doctor = doctor
             appointment.save()
             messages.success(request, 'Appointment was created!')
-            logger.info(f"Appointment created for patient {profile.user.username} with doctor {doctor.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+            logger.info(f"Appointment created for patient {profile.user.username} with doctor {profile.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
             return redirect('appointment', pk=pk)
         else:
             logger.error(f"Appointment form is invalid for patient {profile.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     
     context = {'profile': profile, 'doctor': doctor, 'form': form}
-    logger.info(f"Rendering single appointment page for doctor {doctor.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+    logger.info(f"Rendering single appointment page for doctor {profile.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     return render(request, 'users/single-appointment.html', context)
 
 @login_required(login_url='login')
@@ -363,3 +363,24 @@ def contactUs(request):
     logger.info(f"Rendering contact us page.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     context = {'page': page, 'profile': profile}
     return render(request, 'users/contact-us.html', context)
+
+@login_required(login_url='login')
+def reviewedAppointment(request, pk):
+    page = 'reviewed-appointment'
+    profile = None  # Use None instead of 'none'
+    try:
+        profile = request.user.profile
+    except AttributeError:
+        return redirect('login')
+    
+    appointment = get_object_or_404(Appointment, id=pk)
+    
+    if request.method == 'POST':
+        appointment.status = 4
+        appointment.save()
+        messages.success(request, 'Appointment was marked as reviewed!')
+        logger.info(f"Appointment {appointment.id} marked as reviewed by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+        return redirect('doctor-dashboard')
+    
+    context = {'page': page}
+    logger.info(f"Rendering reviewed appointment page for appointment {appointment.id}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})

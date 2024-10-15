@@ -24,8 +24,8 @@ urlpatterns = [
     
     path('doctors/', views.doctors, name='doctors'),
     path('about/', views.about, name='about'),
-    path('contact-us/', views.contactUs, name='contact-us')
+    path('contact-us/', views.contactUs, name='contact-us'),
     
-    
+    path('reviewed-appointment/<str:pk>/', views.reviewedAppointment, name='reviewed-appointment'),
     
 ]

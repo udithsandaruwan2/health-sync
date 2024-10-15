@@ -18,6 +18,7 @@ from decouple import config
 import os
 import logging
 from logging.handlers import TimedRotatingFileHandler
+from datetime import datetime
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -223,8 +224,11 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)
 
-# Path for the main log file
-LOG_FILE = os.path.join(LOG_DIR, 'activity.log')
+# Get the current date to append to the log file name
+current_date = datetime.now().strftime('%Y-%m-%d')
+
+# Path for the main log file with date (removes the additional part)
+LOG_FILE = os.path.join(LOG_DIR, f'activity_{current_date}.log')
 
 # LOGGING configuration for Django
 LOGGING = {
