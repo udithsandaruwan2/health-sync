@@ -56,6 +56,17 @@
                     </div>
                 {% endif %}
             </form>
+            <form method="post">
+
+                {% if field.errors %}
+                <div class="error">
+                    {{ field.errors.as_text }}  <!-- Error message -->
+                </div>
+            {% endif %}
+
+            
+            </form>
+            
         </div>
     </div>
 

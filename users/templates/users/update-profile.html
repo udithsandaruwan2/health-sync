@@ -125,6 +125,11 @@
                 <!-- Back Button -->
                 
             </form>
+            {% if field.errors %}
+                <div class="error">
+                    {{ field.errors.as_text }}  <!-- Error message -->
+                </div>
+            {% endif %}
         </div>
     </div>
     

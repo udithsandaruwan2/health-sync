@@ -210,7 +210,7 @@ def singleAppointment(request, pk):
     except AttributeError:
         return redirect('login')
     
-    doctor = Profile.objects.get(id=pk)
+    doctor = Profile.objects.get(uuid=pk)
     form = AppointmentForm()
     
     if request.method == 'POST':
@@ -255,7 +255,7 @@ def updateProfile(request):
 
 @login_required(login_url='login')
 def deleteAppointment(request, pk):
-    appointment = get_object_or_404(Appointment, id=pk)
+    appointment = get_object_or_404(Appointment, uuid=pk)
     page_from = request.GET.get('page')
     page = decrypt_message(page_from)
     
@@ -263,7 +263,7 @@ def deleteAppointment(request, pk):
         # Change status to 3 (assuming it means deleted/cancelled)
         appointment.status = 3
         appointment.save()  # Make sure to save the status change
-        logger.info(f"Appointment {appointment.id} status changed to deleted by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+        logger.info(f"Appointment {appointment.uuid} status changed to deleted by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
         # Redirect based on the page context
         if page == 'user-dashboard':
             return redirect('dashboard')
@@ -271,7 +271,7 @@ def deleteAppointment(request, pk):
             return redirect('requested-appointment')
     
     context = {'appointment': appointment, 'page': page}
-    logger.info(f"Rendering delete appointment page for appointment {appointment.id}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+    logger.info(f"Rendering delete appointment page for appointment {appointment.uuid}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     return render(request, 'users/delete-appointment.html', context)
 
 @login_required(login_url='login')
@@ -307,23 +307,23 @@ def requestedAppointment(request):
 
 @login_required(login_url='login')
 def approveAppointment(request, pk):
-    appointment = get_object_or_404(Appointment, id=pk)
+    appointment = get_object_or_404(Appointment, uuid=pk)
     page = 'approve-appointment'
     
     if request.method == 'POST':
         appointment.status = 2
         appointment.save()
         messages.success(request, 'Appointment was approved!')
-        logger.info(f"Appointment {appointment.id} approved by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+        logger.info(f"Appointment {appointment.uuid} approved by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
         return redirect('requested-appointment')
     
     context = {'page': page, 'appointment': appointment}
-    logger.info(f"Rendering approve appointment page for appointment {appointment.id}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+    logger.info(f"Rendering approve appointment page for appointment {appointment.uuid}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     return render(request, 'users/approve-appointment.html', context)
 
 def singleProfileView(request, pk):
     try:
-        profile = Profile.objects.get(id=pk)
+        profile = Profile.objects.get(uuid=pk)
         logger.info(f"Rendering single profile view for profile {profile.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
     except Profile.DoesNotExist:
         logger.error(f"Profile with id {pk} does not exist.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
@@ -373,14 +373,14 @@ def reviewedAppointment(request, pk):
     except AttributeError:
         return redirect('login')
     
-    appointment = get_object_or_404(Appointment, id=pk)
+    appointment = get_object_or_404(Appointment, uuid=pk)
     
     if request.method == 'POST':
         appointment.status = 4
         appointment.save()
         messages.success(request, 'Appointment was marked as reviewed!')
-        logger.info(f"Appointment {appointment.id} marked as reviewed by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+        logger.info(f"Appointment {appointment.uuid} marked as reviewed by user {request.user.username}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
         return redirect('doctor-dashboard')
     
     context = {'page': page}
-    logger.info(f"Rendering reviewed appointment page for appointment {appointment.id}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})
+    logger.info(f"Rendering reviewed appointment page for appointment {appointment.uuid}.", extra={'user': request.user, 'request_path': request.path, 'time': now()})

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from datetime import date
+from django.core.validators import RegexValidator
 
 class Profile(models.Model):
     TYPES = [
@@ -12,15 +13,25 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     email = models.EmailField(max_length=500, null=True, blank=True)
-    username = models.CharField(max_length=200, null=True, blank=True)
+    username = models.CharField(
+        max_length=200, 
+        null=True, 
+        blank=True,
+        validators=[RegexValidator(
+            regex=r'^[\w.@+-]+$',
+            message='Username must contain only letters, numbers, and @/./+/-/_ characters.'
+        )]
+    )
     location = models.CharField(max_length=200, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
+    
     @property
     def age(self):
         if self.date_of_birth:
             today = date.today()
             return today.year - self.date_of_birth.year - ((today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day))
         return None
+    
     language = models.CharField(max_length=100, null=True, blank=True)
     short_intro = models.CharField(max_length=200, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
@@ -34,41 +45,48 @@ class Profile(models.Model):
     specialization = models.CharField(max_length=300, null=True, blank=True)  # Only for doctors
     medical_history = models.TextField(null=True, blank=True)  # Only for patients
     created = models.DateTimeField(auto_now_add=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+    uuid = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
 
     def __str__(self):
         return str(self.username)
 
 class Appointment(models.Model):
-    STATUS = (
-        (1, 'Pending'),
-        (2, 'Approved'),
-        (3, 'Cancelled'),
-        (4, 'Reviewed'),
-    )
-    
-    patient = models.ForeignKey(
-        Profile, 
-        on_delete=models.CASCADE, 
-        limit_choices_to={'user_type': 1},  # Only patients
-        related_name='patient_appointments'  # Specify unique related_name
-    )
-    doctor = models.ForeignKey(
-        Profile, 
-        on_delete=models.CASCADE, 
-        limit_choices_to={'user_type': 2},  # Only doctors
-        related_name='doctor_appointments'  # Specify unique related_name
-    )
-    status = models.IntegerField(choices=STATUS, default=1)
-    description = models.TextField(null=True, blank=True)
-    appointment_date = models.DateField()
-    appointment_time = models.TimeField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
-    
-    def __str__(self):
-        return str(f"{self.doctor} : {self.patient}")
+            STATUS = (
+                (1, 'Pending'),
+                (2, 'Approved'),
+                (3, 'Cancelled'),
+                (4, 'Reviewed'),
+            )
+            
+            patient = models.ForeignKey(
+                Profile, 
+                on_delete=models.CASCADE, 
+                limit_choices_to={'user_type': 1},  # Only patients
+                related_name='patient_appointments'  # Specify unique related_name
+            )
+            doctor = models.ForeignKey(
+                Profile, 
+                on_delete=models.CASCADE, 
+                limit_choices_to={'user_type': 2},  # Only doctors
+                related_name='doctor_appointments'  # Specify unique related_name
+            )
+            status = models.IntegerField(choices=STATUS, default=1)
+            description = models.TextField(
+                null=True, 
+                blank=True,
+                validators=[RegexValidator(
+                    regex=r'^[\w\s.,!?-]*$',
+                    message='Description can only contain letters, numbers, spaces, and ./,!?- characters.'
+                )]
+            )
+            appointment_date = models.DateField()
+            appointment_time = models.TimeField()
+            created = models.DateTimeField(auto_now_add=True)
+            updated = models.DateTimeField(auto_now=True)
+            uuid = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True, editable=False)
+            
+            def __str__(self):
+                return str(f"{self.doctor} : {self.patient}")
 
 
 class LoyaltyPoint(models.Model):

@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-sf*qw7w*qqw&*nbtyav&qb)-dyv=*!ebxihf@0&^&5p7m-h(x2'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -92,10 +92,21 @@ WSGI_APPLICATION = 'healthsync.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv('DB_NAME'),           # The name of your PostgreSQL database
+        'USER': os.getenv('DB_USER'),            # Your PostgreSQL username
+        'PASSWORD': os.getenv('DB_PASSWORD'),       # Your PostgreSQL password
+        'HOST': 'localhost',               # Use 'localhost' if PostgreSQL is on the same machine
+        'PORT': '5432',                    # The default PostgreSQL port
     }
 }
 
@@ -217,6 +228,11 @@ CSP_CONNECT_SRC = (
 
 
 
+import os
+import logging
+import logging.config  # Import logging.config
+from datetime import datetime
+
 # Define the logs directory
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
@@ -224,11 +240,34 @@ LOG_DIR = os.path.join(BASE_DIR, 'logs')
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)
 
-# Get the current date to append to the log file name
-current_date = datetime.now().strftime('%Y-%m-%d')
+# Path for the main log file
+LOG_FILE = os.path.join(LOG_DIR, 'activity.log')
 
-# Path for the main log file with date (removes the additional part)
-LOG_FILE = os.path.join(LOG_DIR, f'activity_{current_date}.log')
+# Custom handler to limit the number of lines
+class LineLimitHandler(logging.FileHandler):
+    def __init__(self, *args, max_lines=100, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.max_lines = max_lines
+        self.line_count = self._get_line_count()
+
+    def _get_line_count(self):
+        if os.path.exists(self.baseFilename):
+            with open(self.baseFilename, 'r') as f:
+                return sum(1 for _ in f)
+        return 0
+
+    def emit(self, record):
+        if self.line_count >= self.max_lines:
+            self._rollover()
+        super().emit(record)
+        self.line_count += 1
+
+    def _rollover(self):
+        self.close()  # Close current log file
+        new_file = f"{self.baseFilename}.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+        os.rename(self.baseFilename, new_file)  # Rename the old log file
+        self.line_count = 0  # Reset line count
+        self.stream = self._open()  # Open new log file
 
 # LOGGING configuration for Django
 LOGGING = {
@@ -245,11 +284,10 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'INFO',
-            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'class': LineLimitHandler,  # Use custom line limit handler
             'filename': LOG_FILE,
-            'when': 'm',  # Rotates every minute
-            'interval': 5,  # Set to 5 minutes interval
-            'formatter': 'detailed',  # Use the detailed formatter
+            'max_lines': 100,  # Set max lines before rollover
+            'formatter': 'detailed',
         },
     },
     'loggers': {
@@ -265,3 +303,6 @@ LOGGING = {
         },
     },
 }
+
+# Add logging configuration
+logging.config.dictConfig(LOGGING)  # Ensure logging configuration is applied
