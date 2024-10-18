@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-import os
 from dotenv import load_dotenv
 load_dotenv() 
 from decouple import config
-import os
-import logging
 from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
 
