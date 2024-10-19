@@ -35,7 +35,7 @@
      
             <div class="img-box">
               <a href="{% url 'appointment' doctor.uuid %}">
-              <img src=" {% static 'ui-kit-public/images/d1.jpg' %} " alt="">
+              <img src=" {{ doctor.profile_image.url }} " alt="">
             </a>
             </div>
           

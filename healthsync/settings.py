@@ -16,6 +16,7 @@ load_dotenv()
 from decouple import config
 from logging.handlers import TimedRotatingFileHandler
 from datetime import datetime
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -227,10 +228,10 @@ CSP_CONNECT_SRC = (
 
 import os
 import logging
-import logging.config  # Import logging.config
 from datetime import datetime
 
-# Define the logs directory
+# Define the base directory and log directory
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_DIR = os.path.join(BASE_DIR, 'logs')
 
 # Create the logs directory if it doesn't exist
@@ -240,66 +241,20 @@ if not os.path.exists(LOG_DIR):
 # Path for the main log file
 LOG_FILE = os.path.join(LOG_DIR, 'activity.log')
 
-# Custom handler to limit the number of lines
-class LineLimitHandler(logging.FileHandler):
-    def __init__(self, *args, max_lines=100, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.max_lines = max_lines
-        self.line_count = self._get_line_count()
+# Basic logging configuration
+logging.basicConfig(
+    level=logging.INFO,  # Set the log level to INFO
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler()  # Optionally, print logs to the console as well
+    ]
+)
 
-    def _get_line_count(self):
-        if os.path.exists(self.baseFilename):
-            with open(self.baseFilename, 'r') as f:
-                return sum(1 for _ in f)
-        return 0
+# Create a logger
+logger = logging.getLogger('myapp')
 
-    def emit(self, record):
-        if self.line_count >= self.max_lines:
-            self._rollover()
-        super().emit(record)
-        self.line_count += 1
-
-    def _rollover(self):
-        self.close()  # Close current log file
-        new_file = f"{self.baseFilename}.{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
-        os.rename(self.baseFilename, new_file)  # Rename the old log file
-        self.line_count = 0  # Reset line count
-        self.stream = self._open()  # Open new log file
-
-# LOGGING configuration for Django
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'detailed': {
-            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s - %(module)s - %(funcName)s - %(lineno)d',
-        },
-        'simple': {
-            'format': '%(levelname)s %(message)s',
-        },
-    },
-    'handlers': {
-        'file': {
-            'level': 'INFO',
-            'class': LineLimitHandler,  # Use custom line limit handler
-            'filename': LOG_FILE,
-            'max_lines': 100,  # Set max lines before rollover
-            'formatter': 'detailed',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-        'myapp': {  # Replace with your app name
-            'handlers': ['file'],
-            'level': 'INFO',
-            'propagate': True,
-        },
-    },
-}
-
-# Add logging configuration
-logging.config.dictConfig(LOGGING)  # Ensure logging configuration is applied
+# Example logging
+logger.info("This is an info log entry.")
+logger.error("This is an error log entry.")
+logger.debug("This is a debug log entry (won't show unless log level is set to DEBUG).")

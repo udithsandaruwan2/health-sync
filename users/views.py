@@ -194,7 +194,7 @@ def userDashboard(request):
         return redirect('login')
     page_encrypted = encrypt_message(page)
     
-    appointments = Appointment.objects.all().filter(patient=profile, status=1)
+    appointments = Appointment.objects.filter(patient=profile).filter(status__in=[1, 2])
     
     points, created = LoyaltyPoint.objects.get_or_create(user=profile)
     
