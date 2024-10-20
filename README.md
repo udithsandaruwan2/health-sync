@@ -34,9 +34,10 @@
 </br>
 <h1 align="center">Features</h1>
 
-<p align="center">- Live previews</p>
-<p align="center">- Fullscreen mode</p>
-<p align="center">- Cross platform</p>
+<p align="center">- User Account (Login / Register)</p>
+<p align="center">- Set an Appointment</p>
+<p align="center">- Dashboards (user AND Doctor)</p>
+<p align="center">- Accept , Cancel , Review Appointments</p>
 </br>
 
 <p align="center">
