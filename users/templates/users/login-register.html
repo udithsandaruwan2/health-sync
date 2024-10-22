@@ -30,7 +30,7 @@
                             <input type="checkbox" class="form-check-input" id="remember" checked>
                             <label class="form-check-label" for="remember">Remember me</label>
                         </div>
-                        <a href="#">Forgot password?</a>
+                        <a href="{% url 'password-reset' %}">Forgot password?</a>
                     </div>
                     <div class="g-recaptcha" data-sitekey="{{ site_key }}" style="text-align: center;"></div><br>
                     <button type="submit" class="btn btn-primary w-100">Log In</button>
